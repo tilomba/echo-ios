@@ -9,7 +9,7 @@
 import Foundation
 
 class NATODictionary {
-    
+
     static let dictionary = [
         "A": "ALPHA",
         "B": "BRAVO",
