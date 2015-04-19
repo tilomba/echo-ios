@@ -16,7 +16,30 @@ class ViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
     }
 
+    func textViewDidChangeSelection(textView: UITextView) {
+//        debugPrintln(textView.selectedRange)
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+//        println(".")
+    }
+    
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        
+        if text.isEmpty && 1 == range.length {
+            var index = range.location
+            while index > 0 && " " != textView.text[advance(textView.text.startIndex, index)] {
+                index--
+            }
+            debugPrintln(index)
+            debugPrintln(textView.text[advance(textView.text.startIndex, index)])
+            
+            let newRange = textView.text.startIndex...advance(textView.text.startIndex, index)
+            textView.text = textView.text[newRange]
+            
+            return true
+        }
+        
         if let translation = NATODictionary.translateCharacter(text as String) {
             textView.text = textView.text + translation + " "
 
