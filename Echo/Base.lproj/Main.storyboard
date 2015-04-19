@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -17,20 +17,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfh-Ba-kUb" customClass="TranslationContainer" customModule="Echo" customModuleProvider="target">
-                                <rect key="frame" x="16" y="105" width="343" height="300"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfh-Ba-kUb" customClass="TranslationContainer" customModule="Echo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="102" width="343" height="313"/>
                                 <color key="backgroundColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="1h0-sK-xsh"/>
                             <constraint firstItem="gfh-Ba-kUb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="CVz-1C-dJF"/>
-                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Eth-ZW-XV1"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="gfh-Ba-kUb" secondAttribute="bottom" constant="262" id="RWF-6S-Hm1"/>
+                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="82" id="QL8-U7-HoS"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="gfh-Ba-kUb" secondAttribute="bottom" constant="252" id="aTC-Hs-OQE"/>
                             <constraint firstItem="gfh-Ba-kUb" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" symbolic="YES" id="bI0-Pr-hXX"/>
                             <constraint firstAttribute="bottom" secondItem="gfh-Ba-kUb" secondAttribute="bottom" constant="478" id="cl8-ct-iFa"/>
-                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="mmc-HV-Usk"/>
-                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="85" id="raq-6t-lJD"/>
+                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="gEU-tu-kvw"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">

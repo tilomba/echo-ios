@@ -11,14 +11,14 @@ import UIKit
 @IBDesignable
 public class TokenView: UILabel {
     struct Constants {
-        static let margin = CGFloat(-8.0)
-        static let radius = CGFloat(0.0)
+        static let xMargin = CGFloat(8.0)
+        static let yMargin = CGFloat(6.0)
     }
     
     override public var text: String? {
         didSet {
             sizeToFit()
-            bounds = CGRectInset(bounds, Constants.margin, Constants.margin)
+            bounds = CGRectInset(bounds, -Constants.xMargin, -Constants.yMargin)
         }
     }
     
@@ -40,8 +40,6 @@ public class TokenView: UILabel {
         backgroundColor = UIColor.lightThemeWordBlockColor()
         textColor = UIColor.wordBlockTextColor()
         font = UIFont.avenirRoman(15)
-        layer.cornerRadius = Constants.radius
-        layer.masksToBounds = true
         textAlignment = .Center
     }
 }

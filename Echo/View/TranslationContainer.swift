@@ -11,7 +11,9 @@ import UIKit
 class TranslationContainer: UIView, UIKeyInput {
     
     struct Constants {
-        static let spacing = CGFloat(12.0)
+        static let spacing = CGFloat(10.0)
+        static let xStartPosition = CGFloat(10.0)
+        static let yStartPosition = CGFloat(13.0)
     }
     
     var tokenList = TokenList()
@@ -48,14 +50,14 @@ class TranslationContainer: UIView, UIKeyInput {
         }
         tokenViews.removeAll()
         
-        var insertPoint = CGPoint(x: 0.0, y: 0.0)
+        var insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin, y: Constants.yStartPosition + TokenView.Constants.yMargin)
         
         for token in tokenList {
             let tokenView = TokenView(frame: CGRectZero)
             tokenView.text = token.rawValue
             
             if insertPoint.x + tokenView.bounds.maxX + Constants.spacing >= bounds.maxX {
-                insertPoint.x = 0.0
+                insertPoint.x = Constants.xStartPosition + TokenView.Constants.xMargin
                 insertPoint.y += tokenView.bounds.height + Constants.spacing
             }
             
