@@ -11,50 +11,52 @@ import Foundation
 class NATODictionary {
 
     static let dictionary = [
-        "A": "ALPHA",
-        "B": "BRAVO",
-        "C": "CHARLIE",
-        "D": "DELTA",
-        "E": "ECHO",
-        "F": "FOXTROT",
-        "G": "GOLF",
-        "H": "HOTEL",
-        "I": "INDIA",
-        "J": "JULIET",
-        "K": "KILO",
-        "L": "LIMA",
-        "M": "MIKE",
-        "N": "NOVEMBER",
-        "O": "OSCAR",
-        "P": "PAPA",
-        "Q": "QUEBEC",
-        "R": "ROMEO",
-        "S": "SIERRA",
-        "T": "TANGO",
-        "U": "UNIFORM",
-        "V": "VICTOR",
-        "W": "WHISKEY",
-        "X": "X-RAY",
-        "Y": "YANKEE",
-        "Z": "ZULU",
-        "0": "ZERO",
-        "1": "ONE",
-        "2": "TWO",
-        "3": "THREE",
-        "4": "FOUR",
-        "5": "FIVE",
-        "6": "SIX",
-        "7": "SEVEN",
-        "8": "EIGHT",
-        "9": "NINE"
+        "A": "Alpha",
+        "B": "Bravo",
+        "C": "Charlie",
+        "D": "Delta",
+        "E": "Echo",
+        "F": "Foxtrot",
+        "G": "Golf",
+        "H": "Hotel",
+        "I": "India",
+        "J": "Juliet",
+        "K": "Kilo",
+        "L": "Lima",
+        "M": "Mike",
+        "N": "November",
+        "O": "Oscar",
+        "P": "Papa",
+        "Q": "Quebec",
+        "R": "Romeo",
+        "S": "Sierra",
+        "T": "Tango",
+        "U": "Uniform",
+        "V": "Victor",
+        "W": "Whiskey",
+        "X": "Xray",
+        "Y": "Yankee",
+        "Z": "Zulu",
+        "0": "Zero",
+        "1": "One",
+        "2": "Two",
+        "3": "Three",
+        "4": "Four",
+        "5": "Five",
+        "6": "Six",
+        "7": "Seven",
+        "8": "Eight",
+        "9": "Nine"
     ]
     
-    static func translateString(string: String) -> [String] {
-        var tokens = [String]()
+    static func translateString(string: String) -> TokenList {
+        var tokens = TokenList()
         
         for character in string.uppercaseString {
             if let translatedCharacter = dictionary[String(character)] {
-                tokens.append(translatedCharacter)
+                if let token = Token(rawValue: translatedCharacter) {
+                    tokens.append(token)
+                }
             }
         }
         

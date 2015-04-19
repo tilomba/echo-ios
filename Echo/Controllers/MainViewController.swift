@@ -11,31 +11,29 @@ import UIKit
 class MainViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var textView: UITextView!
+    var tokenList = TokenList()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        // Translate
         if !text.isEmpty {
-            let tokens = NATODictionary.translateString(text as String)
-            for token in tokens {
-                textView.text = textView.text + token + " "
-            }
-            
-            return false
+            tokenList += NATODictionary.translateString(text as String)
         } else if 1 == range.length {
-            var index = range.location
-            while index > 0 && " " != textView.text[advance(textView.text.startIndex, index)] {
-                index--
-            }
-            
-            let newRange = textView.text.startIndex...advance(textView.text.startIndex, index)
-            textView.text = textView.text[newRange]
+            tokenList.removeLast()
         }
         
-        return true
+        updateView()
+        
+        return false
+    }
+    
+    func updateView() {
+        textView.text = ""
+        for token in tokenList {
+            textView.text = textView.text + token.rawValue + " "
+        }
     }
 }
 
