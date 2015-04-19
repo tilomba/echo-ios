@@ -49,11 +49,20 @@ class NATODictionary {
         "9": "NINE"
     ]
     
-    static func translateCharacter(character: String) -> String? {
-        if let translatedCharacter = dictionary[character.uppercaseString] {
-            return translatedCharacter
+    static func translateCharacter(string: String) -> String? {
+        var oldString = string.uppercaseString
+        var newString = ""
+        
+        for character in oldString {
+            if let translatedCharacter = dictionary[String(character)] {
+                newString = newString + translatedCharacter + " "
+            }
         }
         
-        return nil
+        if !newString.isEmpty {
+            return newString
+        } else {
+            return nil
+        }
     }
 }

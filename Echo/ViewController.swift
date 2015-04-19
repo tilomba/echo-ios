@@ -17,22 +17,28 @@ class ViewController: UIViewController, UITextViewDelegate {
     }
 
     func textViewDidChangeSelection(textView: UITextView) {
-//        debugPrintln(textView.selectedRange)
     }
     
     func textViewDidChange(textView: UITextView) {
-//        println(".")
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if count(text) > 1 {
+            var newText = ""
+            if let translation = NATODictionary.translateCharacter(text as String) {
+                newText = newText + translation
+            }
+            
+            textView.text = textView.text + newText
+            
+            return false
+        }
         
         if text.isEmpty && 1 == range.length {
             var index = range.location
             while index > 0 && " " != textView.text[advance(textView.text.startIndex, index)] {
                 index--
             }
-            debugPrintln(index)
-            debugPrintln(textView.text[advance(textView.text.startIndex, index)])
             
             let newRange = textView.text.startIndex...advance(textView.text.startIndex, index)
             textView.text = textView.text[newRange]
@@ -41,7 +47,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         }
         
         if let translation = NATODictionary.translateCharacter(text as String) {
-            textView.text = textView.text + translation + " "
+            textView.text = textView.text + translation
 
             return false
         }
