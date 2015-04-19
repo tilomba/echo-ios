@@ -20,9 +20,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfh-Ba-kUb" customClass="TranslationContainer" customModule="Echo" customModuleProvider="target">
                                 <rect key="frame" x="16" y="20" width="568" height="560"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="viewController" destination="vXZ-lx-hvc" id="zWZ-vR-vuh"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

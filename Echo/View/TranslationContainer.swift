@@ -14,7 +14,6 @@ class TranslationContainer: UIView, UIKeyInput {
         static let spacing = CGFloat(12.0)
     }
     
-    @IBOutlet weak var viewController: MainViewController!
     var tokenList = TokenList()
     var tokenViews = [TokenView]()
     
