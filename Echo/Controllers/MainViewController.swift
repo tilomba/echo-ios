@@ -17,18 +17,15 @@ class MainViewController: UIViewController, UITextViewDelegate {
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        if count(text) > 1 {
-            var newText = ""
-            if let translation = NATODictionary.translateCharacter(text as String) {
-                newText = newText + translation
+        // Translate
+        if !text.isEmpty {
+            let tokens = NATODictionary.translateString(text as String)
+            for token in tokens {
+                textView.text = textView.text + token + " "
             }
             
-            textView.text = textView.text + newText
-            
             return false
-        }
-        
-        if text.isEmpty && 1 == range.length {
+        } else if 1 == range.length {
             var index = range.location
             while index > 0 && " " != textView.text[advance(textView.text.startIndex, index)] {
                 index--
@@ -36,14 +33,6 @@ class MainViewController: UIViewController, UITextViewDelegate {
             
             let newRange = textView.text.startIndex...advance(textView.text.startIndex, index)
             textView.text = textView.text[newRange]
-            
-            return true
-        }
-        
-        if let translation = NATODictionary.translateCharacter(text as String) {
-            textView.text = textView.text + translation
-
-            return false
         }
         
         return true
