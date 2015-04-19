@@ -13,6 +13,7 @@
 		A5BE05C91AD1B20D0007821B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5BE05C81AD1B20D0007821B /* Images.xcassets */; };
 		A5BE05CC1AD1B20D0007821B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5BE05CA1AD1B20D0007821B /* LaunchScreen.xib */; };
 		A5BE05D81AD1B20D0007821B /* EchoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BE05D71AD1B20D0007821B /* EchoTests.swift */; };
+		E45AE9E21AE35AA400C45B4C /* NATODictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45AE9E11AE35AA400C45B4C /* NATODictionary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		A5BE05D11AD1B20D0007821B /* EchoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EchoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5BE05D61AD1B20D0007821B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5BE05D71AD1B20D0007821B /* EchoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoTests.swift; sourceTree = "<group>"; };
+		E45AE9E11AE35AA400C45B4C /* NATODictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NATODictionary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				A5BE05C11AD1B20D0007821B /* AppDelegate.swift */,
 				A5BE05C31AD1B20D0007821B /* ViewController.swift */,
 				A5BE05C51AD1B20D0007821B /* Main.storyboard */,
+				E45AE9E11AE35AA400C45B4C /* NATODictionary.swift */,
 				A5BE05C81AD1B20D0007821B /* Images.xcassets */,
 				A5BE05CA1AD1B20D0007821B /* LaunchScreen.xib */,
 				A5BE05BF1AD1B20D0007821B /* Supporting Files */,
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E45AE9E21AE35AA400C45B4C /* NATODictionary.swift in Sources */,
 				A5BE05C41AD1B20D0007821B /* ViewController.swift in Sources */,
 				A5BE05C21AD1B20D0007821B /* AppDelegate.swift in Sources */,
 			);
@@ -405,6 +409,7 @@
 				A5BE05DD1AD1B20D0007821B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A5BE05DE1AD1B20D0007821B /* Build configuration list for PBXNativeTarget "EchoTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +418,7 @@
 				A5BE05E01AD1B20D0007821B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
