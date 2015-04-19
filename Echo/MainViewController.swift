@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  Echo
 //
 //  Created by Douglas Bumby on 2015-04-05.
@@ -8,18 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextViewDelegate {
+class MainViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var textView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-
-    func textViewDidChangeSelection(textView: UITextView) {
-    }
-    
-    func textViewDidChange(textView: UITextView) {
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
