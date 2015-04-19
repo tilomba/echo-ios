@@ -12,7 +12,7 @@ import UIKit
 public class TokenView: UILabel {
     struct Constants {
         static let margin = CGFloat(-8.0)
-        static let radius = CGFloat(8.0)
+        static let radius = CGFloat(0.0)
     }
     
     override public var text: String? {
@@ -37,9 +37,10 @@ public class TokenView: UILabel {
     }
     
     private func setup() {
+        backgroundColor = UIColor.lightThemeWordBlockColor()
+        textColor = UIColor.wordBlockTextColor()
         layer.cornerRadius = Constants.radius
         layer.masksToBounds = true
-        backgroundColor = UIColor.lightGrayColor()
         textAlignment = .Center
     }
 }
