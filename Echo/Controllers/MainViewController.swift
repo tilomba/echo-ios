@@ -10,8 +10,14 @@ import UIKit
 
 class MainViewController: UIViewController, UITextViewDelegate {
     
+    struct Constants {
+        static let spacing = CGFloat(12.0)
+    }
+    
+    @IBOutlet weak var tokenViewContainer: UIView!
     @IBOutlet weak var textView: UITextView!
     var tokenList = TokenList()
+    var tokenViews = [TokenView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +32,35 @@ class MainViewController: UIViewController, UITextViewDelegate {
         
         updateView()
         
-        return false
+        return true
     }
     
     func updateView() {
         textView.text = ""
+        for tokenView in tokenViews {
+            tokenView.removeFromSuperview()
+        }
+        tokenViews.removeAll()
+        
+        var insertPoint = CGPoint(x: 0.0, y: 0.0)
+        
         for token in tokenList {
-            textView.text = textView.text + token.rawValue + " "
+//            textView.text = texiew.text + token.rawValue + " "
+            
+            let tokenView = TokenView(frame: CGRectZero)
+            tokenView.text = token.rawValue
+            
+            if insertPoint.x + tokenView.bounds.maxX + Constants.spacing >= tokenViewContainer.bounds.maxX {
+                insertPoint.x = 0.0
+                insertPoint.y += tokenView.bounds.height + Constants.spacing
+            }
+            
+            tokenView.center = CGPoint(x: tokenView.bounds.midX + insertPoint.x, y: tokenView.bounds.midY + insertPoint.y)
+            
+            tokenViewContainer.addSubview(tokenView)
+            tokenViews.append(tokenView)
+            
+            insertPoint.x += tokenView.bounds.width + Constants.spacing
         }
     }
 }

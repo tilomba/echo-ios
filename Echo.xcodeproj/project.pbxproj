@@ -16,6 +16,7 @@
 		A5E7DD6D1AE37ECF00FAC9F7 /* TranslationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E7DD6C1AE37ECF00FAC9F7 /* TranslationContainer.swift */; };
 		E45088261AE41D2800A6C4AC /* TokenList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45088251AE41D2700A6C4AC /* TokenList.swift */; };
 		E45088281AE41E0300A6C4AC /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45088271AE41E0300A6C4AC /* Token.swift */; };
+		E450882A1AE432FA00A6C4AC /* TokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45088291AE432FA00A6C4AC /* TokenView.swift */; };
 		E45AE9E21AE35AA400C45B4C /* NATODictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45AE9E11AE35AA400C45B4C /* NATODictionary.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		A5E7DD6C1AE37ECF00FAC9F7 /* TranslationContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationContainer.swift; sourceTree = "<group>"; };
 		E45088251AE41D2700A6C4AC /* TokenList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenList.swift; sourceTree = "<group>"; };
 		E45088271AE41E0300A6C4AC /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		E45088291AE432FA00A6C4AC /* TokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenView.swift; sourceTree = "<group>"; };
 		E45AE9E11AE35AA400C45B4C /* NATODictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NATODictionary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				A5E7DD6C1AE37ECF00FAC9F7 /* TranslationContainer.swift */,
+				E45088291AE432FA00A6C4AC /* TokenView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				E45088261AE41D2800A6C4AC /* TokenList.swift in Sources */,
 				E45AE9E21AE35AA400C45B4C /* NATODictionary.swift in Sources */,
 				A5BE05C41AD1B20D0007821B /* MainViewController.swift in Sources */,
+				E450882A1AE432FA00A6C4AC /* TokenView.swift in Sources */,
 				E45088281AE41E0300A6C4AC /* Token.swift in Sources */,
 				A5BE05C21AD1B20D0007821B /* AppDelegate.swift in Sources */,
 				A5E7DD6D1AE37ECF00FAC9F7 /* TranslationContainer.swift in Sources */,
