@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VBT-o4-w5d">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VBT-o4-w5d">
+                                <rect key="frame" x="20" y="20" width="560" height="588"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
@@ -27,6 +27,12 @@
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="VBT-o4-w5d" secondAttribute="trailing" constant="20" symbolic="YES" id="duL-hE-y5l"/>
+                            <constraint firstItem="VBT-o4-w5d" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" constant="8" symbolic="YES" id="mcD-eP-C7C"/>
+                            <constraint firstItem="VBT-o4-w5d" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="nIQ-Q1-I1n"/>
+                            <constraint firstItem="VBT-o4-w5d" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="20" symbolic="YES" id="ykC-dP-NJs"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="textView" destination="VBT-o4-w5d" id="7uM-U2-Flp"/>
