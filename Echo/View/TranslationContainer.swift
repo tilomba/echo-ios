@@ -144,14 +144,25 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
             
             editingActive = false
             popupVisible = true
+            
+            let finalRect = popupView!.bounds
+            popupView!.bounds = CGRectZero
+            UIView.animateWithDuration(0.20) {
+                self.popupView!.bounds = finalRect
+            }
         }
     }
     
     func dismiss() {
         if popupVisible {
-            popupView!.removeFromSuperview()
-            popupVisible = false
-            editingActive = true
+            UIView.animateWithDuration(0.20, animations: { () -> Void in
+                self.popupView!.bounds = CGRectZero
+            }, completion: { (completed) -> Void in
+                self.popupView!.removeFromSuperview()
+                self.popupView!.bounds = CGRect(x: 0.0, y: 0.0, width: 299.0, height: 93.0)
+                self.popupVisible = false
+                self.editingActive = true
+            })
         }
     }
 }
