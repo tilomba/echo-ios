@@ -8,22 +8,13 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UIGestureRecognizerDelegate {
+class MainViewController: UIViewController {
     
     @IBOutlet weak var translationContainer: UIView!
-    let popupView = PopupView()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         translationContainer.becomeFirstResponder()
-    }
-    
-    @IBAction func longPressGestureRecognizer(sender: AnyObject) {
-        if sender.state == UIGestureRecognizerState.Began {
-            println("Received.")
-            view.addSubview(popupView)
-        }
     }
 }

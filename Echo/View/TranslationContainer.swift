@@ -8,9 +8,11 @@
 
 import UIKit
 
-class TranslationContainer: UIView, UIKeyInput {
+class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
     
     var insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin, y: Constants.yStartPosition + TokenView.Constants.yMargin)
+    var popupView: PopupView?
+    var active = true
     
     struct Constants {
         static let spacing = CGFloat(10.0)
@@ -27,12 +29,20 @@ class TranslationContainer: UIView, UIKeyInput {
     }
     
     func insertText(text: String) {
+        if !active {
+            return
+        }
+        
         let newTokens = NATODictionary.translateString(text)
         tokenList += newTokens
         draw(newTokens)
     }
     
     func deleteBackward() {
+        if !active {
+            return
+        }
+        
         if tokenList.isEmpty {
             return
         }
@@ -116,6 +126,22 @@ class TranslationContainer: UIView, UIKeyInput {
     func adjustInsertPointForTokenView(tokenView: TokenView) {
         if insertPoint.x + tokenView.bounds.size.width >= bounds.maxX {
             moveDownALine(tokenView.bounds.size.height)
+        }
+    }
+    
+    @IBAction func longPressGestureRecognizer(sender: AnyObject) {
+        if sender.state == UIGestureRecognizerState.Began {
+            println("Received.")
+            
+            if nil == popupView {
+                popupView = PopupView(frame: CGRect(x: 0.0, y: 0.0, width: 299.0, height: 93.0))
+            }
+            
+            addSubview(popupView!)
+            popupView!.center = CGPoint(x: bounds.midX, y: bounds.midY)
+            popupView!.layer.zPosition = 100
+            
+            active = false
         }
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -34,8 +34,7 @@
                                     <constraint firstAttribute="bottom" secondItem="uh8-fz-ZxV" secondAttribute="bottom" constant="110" id="gYd-m5-hjF"/>
                                 </constraints>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="2YI-5v-hOM" appends="YES" id="1tT-kl-NMk"/>
-                                    <outletCollection property="gestureRecognizers" destination="2YI-5v-hOM" appends="YES" id="I80-Nw-aAE"/>
+                                    <outletCollection property="gestureRecognizers" destination="2YI-5v-hOM" appends="YES" id="tHe-GT-uR4"/>
                                 </connections>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h6X-KQ-uXS">
@@ -65,9 +64,6 @@
                                 <exclude reference="cl8-ct-iFa"/>
                             </mask>
                         </variation>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="2YI-5v-hOM" appends="YES" id="Jaa-Wo-jf3"/>
-                        </connections>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -82,8 +78,8 @@
                 </customObject>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="2YI-5v-hOM">
                     <connections>
-                        <action selector="longPressGestureRecognizer:" destination="vXZ-lx-hvc" id="YAu-pD-qya"/>
-                        <outlet property="delegate" destination="vXZ-lx-hvc" id="xqp-Gb-NF1"/>
+                        <action selector="longPressGestureRecognizer:" destination="gfh-Ba-kUb" id="agJ-ix-ICy"/>
+                        <outlet property="delegate" destination="gfh-Ba-kUb" id="JFN-9I-i58"/>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>

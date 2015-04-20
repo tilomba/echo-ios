@@ -11,8 +11,7 @@ import UIKit
 @IBDesignable
 public class PopupView: UIView {
     struct Constants {
-        static var radius = CGFloat(200
-        )
+        static var radius = CGFloat(200)
     }
     
     override public func prepareForInterfaceBuilder() {
