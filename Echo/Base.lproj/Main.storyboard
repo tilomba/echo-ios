@@ -18,19 +18,28 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfh-Ba-kUb" customClass="TranslationContainer" customModule="Echo" customModuleProvider="target">
-                                <rect key="frame" x="16" y="102" width="343" height="313"/>
+                                <rect key="frame" x="16" y="109" width="343" height="312"/>
                                 <color key="backgroundColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h6X-KQ-uXS">
+                                <rect key="frame" x="166" y="42" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="j5N-0I-l4K"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="1h0-sK-xsh"/>
+                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="top" secondItem="h6X-KQ-uXS" secondAttribute="bottom" constant="22" id="6VV-qF-ICe"/>
                             <constraint firstItem="gfh-Ba-kUb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="CVz-1C-dJF"/>
-                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="82" id="QL8-U7-HoS"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="gfh-Ba-kUb" secondAttribute="bottom" constant="252" id="aTC-Hs-OQE"/>
+                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="109" id="OYi-XH-VWa"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="gfh-Ba-kUb" secondAttribute="bottom" constant="246" id="Yde-ma-onB"/>
                             <constraint firstItem="gfh-Ba-kUb" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" symbolic="YES" id="bI0-Pr-hXX"/>
                             <constraint firstAttribute="bottom" secondItem="gfh-Ba-kUb" secondAttribute="bottom" constant="478" id="cl8-ct-iFa"/>
-                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="gEU-tu-kvw"/>
+                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="eRd-kH-I6L"/>
+                            <constraint firstItem="h6X-KQ-uXS" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="166" id="oAa-6F-2Bv"/>
+                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="rx0-PM-Bnt"/>
+                            <constraint firstItem="h6X-KQ-uXS" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="22" id="xgR-QJ-d1c"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -46,6 +55,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <customObject id="uty-aa-Nle" customClass="Branding" customModule="Echo" customModuleProvider="target">
+                    <connections>
+                        <outletCollection property="canvasTargets" destination="h6X-KQ-uXS" collectionClass="NSMutableArray" id="vEW-5L-aCW"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="561.5" y="508.5"/>
         </scene>
