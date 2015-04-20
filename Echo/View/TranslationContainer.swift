@@ -131,6 +131,10 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
     }
     
     @IBAction func longPressGestureRecognizer(sender: AnyObject) {
+        if popupVisible {
+            return
+        }
+        
         if sender.state == UIGestureRecognizerState.Began {
             println("Received.")
             
