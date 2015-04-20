@@ -26,7 +26,9 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func dismissGestureRecognizer(sender: AnyObject) {
-        println("PopupView Dismissed.")
-        translationContainer.dismiss()
+        if translationContainer.popupVisible {
+            println("PopupView Dismissed.")
+            translationContainer.dismiss()
+        }
     }
 }
