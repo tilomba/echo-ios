@@ -44,8 +44,13 @@ class TranslationContainer: UIView, UIKeyInput {
         }
         
         let tokenViewToRemove = tokenViews.removeLast()
-        tokenViewToRemove.removeFromSuperview()
         moveInsertPointAfterTokenView(tokenViewToRemove)
+        
+        UIView.animateWithDuration(0.15, animations: { () -> Void in
+            tokenViewToRemove.center = CGPoint(x: self.bounds.midX, y: self.bounds.maxY + 75.0)
+        }) { (completed) -> Void in
+            tokenViewToRemove.removeFromSuperview()
+        }
     }
     
     func hasText() -> Bool {
@@ -66,10 +71,15 @@ class TranslationContainer: UIView, UIKeyInput {
             adjustInsertPointForTokenView(tokenView)
             
             if canAdd {
-                tokenView.center = CGPoint(x: tokenView.bounds.midX + insertPoint.x, y: tokenView.bounds.midY + insertPoint.y)
+                let position = CGPoint(x: tokenView.bounds.midX + insertPoint.x, y: tokenView.bounds.midY + insertPoint.y)
+                tokenView.center = CGPoint(x: bounds.midX, y: bounds.maxY + 75.0)
                 
                 addSubview(tokenView)
                 tokenViews.append(tokenView)
+                
+                UIView.animateWithDuration(0.15) {
+                    tokenView.center = position
+                }
                 
                 moveInsertPoint(tokenView.bounds.size)
             } else {
