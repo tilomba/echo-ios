@@ -13,6 +13,7 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
     var insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin, y: Constants.yStartPosition + TokenView.Constants.yMargin)
     var popupView: PopupView?
     var active = true
+    var popupVisible = false
     
     struct Constants {
         static let spacing = CGFloat(10.0)
@@ -142,6 +143,14 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
             popupView!.layer.zPosition = 100
             
             active = false
+            popupVisible = true
+        }
+    }
+    
+    func dismiss() {
+        if popupVisible {
+            popupView!.removeFromSuperview()
+            popupVisible = false
         }
     }
 }

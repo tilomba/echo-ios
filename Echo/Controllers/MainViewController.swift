@@ -12,9 +12,22 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var translationContainer: UIView!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         translationContainer.becomeFirstResponder()
     }
+    
+    
+    
+    @IBAction func dismissGestureRecognizer(sender: AnyObject) {
+        if sender.state == UIGestureRecognizerState.Began {
+            println("Dismissed.")
+//            translationContainer.dis
+        }
+    }
+
+    
 }
