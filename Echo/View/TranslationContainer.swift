@@ -151,6 +151,7 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
         if popupVisible {
             popupView!.removeFromSuperview()
             popupVisible = false
+            editingActive = true
         }
     }
 }

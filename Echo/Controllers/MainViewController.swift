@@ -14,14 +14,19 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
         
         translationContainer.becomeFirstResponder()
     }
     
-    @IBAction func dismissGestureRecognizer(sender: AnyObject) {
-        if sender.state == UIGestureRecognizerState.Began {
-            println("Dismissed.")
-            translationContainer.dismiss()
-        }
+    func setup() {
+        let dismissGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissGestureRecognizer:")
+        dismissGestureRecognizer.numberOfTapsRequired = 1
+        view.addGestureRecognizer(dismissGestureRecognizer)
+    }
+    
+    func dismissGestureRecognizer(sender: AnyObject) {
+        println("PopupView Dismissed.")
+        translationContainer.dismiss()
     }
 }
