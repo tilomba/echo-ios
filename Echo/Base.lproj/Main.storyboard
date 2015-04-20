@@ -19,27 +19,44 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfh-Ba-kUb" customClass="TranslationContainer" customModule="Echo" customModuleProvider="target">
                                 <rect key="frame" x="16" y="109" width="343" height="312"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uh8-fz-ZxV" customClass="PopupView" customModule="Echo" customModuleProvider="target">
+                                        <rect key="frame" x="22" y="109" width="299" height="93"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="uh8-fz-ZxV" firstAttribute="leading" secondItem="gfh-Ba-kUb" secondAttribute="leading" constant="22" id="AYY-Gn-uXt"/>
+                                    <constraint firstItem="uh8-fz-ZxV" firstAttribute="top" secondItem="gfh-Ba-kUb" secondAttribute="top" constant="109" id="Qtc-In-gFc"/>
+                                    <constraint firstItem="uh8-fz-ZxV" firstAttribute="centerX" secondItem="gfh-Ba-kUb" secondAttribute="centerX" id="WKl-bx-WC8"/>
+                                    <constraint firstAttribute="bottom" secondItem="uh8-fz-ZxV" secondAttribute="bottom" constant="110" id="gYd-m5-hjF"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="2YI-5v-hOM" appends="YES" id="1tT-kl-NMk"/>
+                                    <outletCollection property="gestureRecognizers" destination="2YI-5v-hOM" appends="YES" id="I80-Nw-aAE"/>
+                                </connections>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h6X-KQ-uXS">
                                 <rect key="frame" x="166" y="42" width="45" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="j5N-0I-l4K"/>
+                                    <constraint firstAttribute="height" constant="45" id="vTY-rF-D6R"/>
+                                    <constraint firstAttribute="width" constant="45" id="wKR-if-V1X"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="top" secondItem="h6X-KQ-uXS" secondAttribute="bottom" constant="22" id="6VV-qF-ICe"/>
                             <constraint firstItem="gfh-Ba-kUb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="CVz-1C-dJF"/>
-                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="109" id="OYi-XH-VWa"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="gfh-Ba-kUb" secondAttribute="bottom" constant="246" id="Yde-ma-onB"/>
+                            <constraint firstItem="h6X-KQ-uXS" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="166" id="In6-vM-YnK"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="gfh-Ba-kUb" secondAttribute="bottom" constant="246" id="KEM-2p-8KV"/>
+                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="top" secondItem="h6X-KQ-uXS" secondAttribute="bottom" constant="22" id="MOO-RT-23B"/>
+                            <constraint firstItem="h6X-KQ-uXS" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="22" id="TvB-FV-fCt"/>
                             <constraint firstItem="gfh-Ba-kUb" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" symbolic="YES" id="bI0-Pr-hXX"/>
                             <constraint firstAttribute="bottom" secondItem="gfh-Ba-kUb" secondAttribute="bottom" constant="478" id="cl8-ct-iFa"/>
-                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="eRd-kH-I6L"/>
-                            <constraint firstItem="h6X-KQ-uXS" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="166" id="oAa-6F-2Bv"/>
-                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="rx0-PM-Bnt"/>
-                            <constraint firstItem="h6X-KQ-uXS" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="22" id="xgR-QJ-d1c"/>
+                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="g7b-Rh-Inw"/>
+                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="hxa-2r-wun"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -48,6 +65,9 @@
                                 <exclude reference="cl8-ct-iFa"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="2YI-5v-hOM" appends="YES" id="Jaa-Wo-jf3"/>
+                        </connections>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -60,6 +80,12 @@
                         <outletCollection property="canvasTargets" destination="h6X-KQ-uXS" collectionClass="NSMutableArray" id="vEW-5L-aCW"/>
                     </connections>
                 </customObject>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="2YI-5v-hOM">
+                    <connections>
+                        <action selector="longPressGestureRecognizer:" destination="vXZ-lx-hvc" id="YAu-pD-qya"/>
+                        <outlet property="delegate" destination="vXZ-lx-hvc" id="xqp-Gb-NF1"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="561.5" y="508.5"/>
         </scene>
