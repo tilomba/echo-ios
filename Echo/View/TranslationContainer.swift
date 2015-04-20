@@ -10,6 +10,8 @@ import UIKit
 
 class TranslationContainer: UIView, UIKeyInput {
     
+    var insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin, y: Constants.yStartPosition + TokenView.Constants.yMargin)
+    
     struct Constants {
         static let spacing = CGFloat(10.0)
         static let xStartPosition = CGFloat(10.0)
@@ -18,22 +20,32 @@ class TranslationContainer: UIView, UIKeyInput {
     
     var tokenList = TokenList()
     var tokenViews = [TokenView]()
+    var canAdd = true
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     func insertText(text: String) {
-        tokenList += NATODictionary.translateString(text)
-        setNeedsDisplay()
+        let newTokens = NATODictionary.translateString(text)
+        tokenList += newTokens
+        draw(newTokens)
     }
     
     func deleteBackward() {
-        if !tokenList.isEmpty {
-            tokenList.removeLast()
-            
-            setNeedsDisplay()
+        if tokenList.isEmpty {
+            return
         }
+        
+        tokenList.removeLast()
+        
+        if tokenViews.isEmpty {
+            return
+        }
+        
+        let tokenViewToRemove = tokenViews.removeLast()
+        tokenViewToRemove.removeFromSuperview()
+        moveInsertPointAfterTokenView(tokenViewToRemove)
     }
     
     func hasText() -> Bool {
@@ -44,29 +56,56 @@ class TranslationContainer: UIView, UIKeyInput {
         return true
     }
     
-    override func drawRect(rect: CGRect) {
-        for tokenView in tokenViews {
-            tokenView.removeFromSuperview()
-        }
-        tokenViews.removeAll()
-        
-        var insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin, y: Constants.yStartPosition + TokenView.Constants.yMargin)
-        
-        for token in tokenList {
+    func draw(newTokens: TokenList) {
+        for token in newTokens {
             let tokenView = TokenView(frame: CGRectZero)
             tokenView.text = token.rawValue
             
-            if insertPoint.x + tokenView.bounds.maxX + Constants.spacing >= bounds.maxX {
-                insertPoint.x = Constants.xStartPosition + TokenView.Constants.xMargin
-                insertPoint.y += tokenView.bounds.height + Constants.spacing
+            // check if the insertion point needs to be moved down a line because it's too wide to fit on the current line
+            let oldInsertPoint = insertPoint
+            adjustInsertPointForTokenView(tokenView)
+            
+            if canAdd {
+                tokenView.center = CGPoint(x: tokenView.bounds.midX + insertPoint.x, y: tokenView.bounds.midY + insertPoint.y)
+                
+                addSubview(tokenView)
+                tokenViews.append(tokenView)
+                
+                moveInsertPoint(tokenView.bounds.size)
+            } else {
+                insertPoint = oldInsertPoint
+                canAdd = true
             }
-            
-            tokenView.center = CGPoint(x: tokenView.bounds.midX + insertPoint.x, y: tokenView.bounds.midY + insertPoint.y)
-            
-            addSubview(tokenView)
-            tokenViews.append(tokenView)
-            
-            insertPoint.x += tokenView.bounds.width + Constants.spacing
+        }
+    }
+    
+    func moveInsertPointAfterTokenView(tokenView: TokenView) {
+        insertPoint.y = tokenView.center.y - tokenView.bounds.midY
+        insertPoint.x = tokenView.center.x - tokenView.bounds.midX
+        if insertPoint.x >= bounds.maxX {
+            moveDownALine(tokenView.bounds.size.height)
+        }
+    }
+    
+    func moveInsertPoint(tokenSize: CGSize) {
+        insertPoint.x += tokenSize.width + Constants.spacing
+        if insertPoint.x >= bounds.maxX {
+            moveDownALine(tokenSize.height)
+        }
+    }
+    
+    func moveDownALine(height: CGFloat) {
+        insertPoint.x = Constants.xStartPosition + TokenView.Constants.xMargin
+        insertPoint.y += height + Constants.spacing
+        
+        if insertPoint.y >= bounds.maxY {
+            canAdd = false
+        }
+    }
+    
+    func adjustInsertPointForTokenView(tokenView: TokenView) {
+        if insertPoint.x + tokenView.bounds.size.width >= bounds.maxX {
+            moveDownALine(tokenView.bounds.size.height)
         }
     }
 }
