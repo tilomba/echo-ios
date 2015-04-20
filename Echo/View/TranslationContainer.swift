@@ -12,7 +12,7 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
     
     var insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin, y: Constants.yStartPosition + TokenView.Constants.yMargin)
     var popupView: PopupView?
-    var active = true
+    var editingActive = true
     var popupVisible = false
     
     struct Constants {
@@ -30,7 +30,7 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
     }
     
     func insertText(text: String) {
-        if !active {
+        if !editingActive {
             return
         }
         
@@ -40,7 +40,7 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
     }
     
     func deleteBackward() {
-        if !active {
+        if !editingActive {
             return
         }
         
@@ -142,7 +142,7 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
             popupView!.center = CGPoint(x: bounds.midX, y: bounds.midY)
             popupView!.layer.zPosition = 100
             
-            active = false
+            editingActive = false
             popupVisible = true
         }
     }

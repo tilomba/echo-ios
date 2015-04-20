@@ -8,9 +8,9 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
-    @IBOutlet weak var translationContainer: UIView!
+    @IBOutlet weak var translationContainer: TranslationContainer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
     @IBAction func dismissGestureRecognizer(sender: AnyObject) {
         if sender.state == UIGestureRecognizerState.Began {
             println("Dismissed.")
-//            translationContainer.dis
+            translationContainer.dismiss()
         }
     }
 }
