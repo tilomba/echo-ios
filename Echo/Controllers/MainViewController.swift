@@ -46,6 +46,10 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         setNeedsStatusBarAppearanceUpdate()
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "theme", object: nil)
+    }
+    
     func swipeUpGestureRecognizer(sender: UISwipeGestureRecognizer) {
         ThemeManager.sharedInstance.lightTheme()
     }

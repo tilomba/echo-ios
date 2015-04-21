@@ -37,6 +37,9 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
 
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "theme", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "paste", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "clear", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "copy", object: nil)
     }
     
     func theme() {
