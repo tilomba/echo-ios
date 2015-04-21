@@ -136,8 +136,6 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
         }
         
         if sender.state == UIGestureRecognizerState.Began {
-            println("Received.")
-            
             if nil == popupView {
                 popupView = PopupView(frame: CGRect(x: 0.0, y: 0.0, width: 299.0, height: 93.0))
             }
@@ -151,7 +149,7 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
             
             let finalRect = popupView!.bounds
             popupView!.bounds = CGRectZero
-            UIView.animateWithDuration(0.20) {
+            UIView.animateWithDuration(0.15) {
                 self.popupView!.bounds = finalRect
             }
         }
@@ -159,7 +157,7 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
     
     func dismiss() {
         if popupVisible {
-            UIView.animateWithDuration(0.20, animations: { () -> Void in
+            UIView.animateWithDuration(0.15, animations: { () -> Void in
                 self.popupView!.bounds = CGRectZero
             }, completion: { (completed) -> Void in
                 self.popupView!.removeFromSuperview()
