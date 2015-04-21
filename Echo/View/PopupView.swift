@@ -15,7 +15,6 @@ public class PopupView: UIView {
     var clearButton: EmbeddedButton!
     var copyButton: EmbeddedButton!
     var blurView: UIVisualEffectView!
-    var blurEffect: UIBlurEffect!
     
     struct Constants {
         static let radius = CGFloat(6)
@@ -41,8 +40,7 @@ public class PopupView: UIView {
         layer.cornerRadius = Constants.radius
         layer.masksToBounds = true
         
-        blurEffect = UIBlurEffect(style: ThemeManager.sharedInstance.blurStyle())
-        blurView = UIVisualEffectView(effect: blurEffect)
+        blurView = UIVisualEffectView(effect: UIBlurEffect(style: ThemeManager.sharedInstance.blurStyle()))
         blurView.bounds = bounds
         blurView.center = center
         addSubview(blurView)
@@ -65,12 +63,14 @@ public class PopupView: UIView {
         copyButton.center = CGPoint(x: bounds.size.width / 3.0 * 2.0 + bounds.size.width / 6.0, y: bounds.size.height / 2.0)
         copyButton.addTarget(self, action: "copyPressed:", forControlEvents: .TouchDown)
         addSubview(copyButton)
-        theme()
     }
     
     func theme() {
-//        blurEffect = UIBlurEffect(style: ThemeManager.sharedInstance.blurStyle())
-//        blurView.effect = blurEffect
+        println("theme")
+//        for view in subviews {
+//            view.removeFromSuperview()
+//        }
+//        setup()
     }
     
     public func pastePressed(sender: AnyObject) {

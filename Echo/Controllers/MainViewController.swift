@@ -27,6 +27,16 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         dismissGestureRecognizer.numberOfTapsRequired = 1
         view.addGestureRecognizer(dismissGestureRecognizer)
         translationContainer.becomeFirstResponder()
+        
+        let swipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
+        
+        swipe.direction = .Up
+        view.addGestureRecognizer(swipe)
+        
+    }
+    
+    func handleSwipes(sender:UISwipeGestureRecognizer) {
+        println("handleSwipes:")
     }
     
     func dismissGestureRecognizer(sender: AnyObject) {
@@ -37,6 +47,10 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return ThemeManager.sharedInstance.statusBarStyle()
+    }
+    
+    @IBAction func swipeUp(sender: UISwipeGestureRecognizer) {
+        println("swipe up")
     }
     
     @IBAction func changeTheme() {
