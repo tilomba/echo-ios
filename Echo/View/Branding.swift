@@ -12,8 +12,20 @@ public class Branding : NSObject {
         static var imageOfBranding: UIImage?
         static var canvasTargets: [AnyObject]?
     }
-
     
+//    var fillColor = ThemeManager.sharedInstance.containerColor()
+    
+    override init() {
+        super.init()
+//        theme()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "theme", name: "theme", object: nil)
+    }
+    
+//    func theme() {
+//        
+//        fillColor = ThemeManager.sharedInstance.containerColor()
+//        
+//    }
     
     public class func drawCanvas1() {
 

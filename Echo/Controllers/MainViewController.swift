@@ -20,23 +20,38 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func setup() {
-        
-        view.backgroundColor = ThemeManager.sharedInstance.backgroundColor()
-        
+
         let dismissGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissGestureRecognizer:")
         dismissGestureRecognizer.numberOfTapsRequired = 1
         view.addGestureRecognizer(dismissGestureRecognizer)
         translationContainer.becomeFirstResponder()
         
-        let swipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
+        let swipeUpGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipeUpGestureRecognizer:"))
+        swipeUpGestureRecognizer.direction = .Up
+        swipeUpGestureRecognizer.numberOfTouchesRequired = 2
+        view.addGestureRecognizer(swipeUpGestureRecognizer)
         
-        swipe.direction = .Up
-        view.addGestureRecognizer(swipe)
+        let swipeDownGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipeDownGestureRecognizer:"))
+        swipeDownGestureRecognizer.direction = .Down
+        swipeDownGestureRecognizer.numberOfTouchesRequired = 2
+        view.addGestureRecognizer(swipeDownGestureRecognizer)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "theme", name: "theme", object: nil)
+        theme()
     }
     
-    func handleSwipes(sender:UISwipeGestureRecognizer) {
-        println("handleSwipes:")
+    func theme() {
+        view.backgroundColor = ThemeManager.sharedInstance.backgroundColor()
+        ThemeManager.sharedInstance.statusBarStyle()
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    func swipeUpGestureRecognizer(sender: UISwipeGestureRecognizer) {
+        ThemeManager.sharedInstance.lightTheme()
+    }
+    
+    func swipeDownGestureRecognizer(sender: UISwipeGestureRecognizer) {
+        ThemeManager.sharedInstance.darkTheme()
     }
     
     func dismissGestureRecognizer(sender: AnyObject) {
@@ -52,11 +67,4 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func swipeUp(sender: UISwipeGestureRecognizer) {
         println("swipe up")
     }
-    
-    @IBAction func changeTheme() {
-        println("test")
-        
-        ThemeManager.sharedInstance.toggle()
-    }
-    
 }

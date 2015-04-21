@@ -44,8 +44,17 @@ class ThemeManager {
     }
     
     // MARK: Switch Function(s)
-    func toggle() {
-        normal = !normal
+    func notification() {
         NSNotificationCenter.defaultCenter().postNotificationName("theme", object: self)
+    }
+    
+    func lightTheme() {
+        normal = true
+        notification()
+    }
+    
+    func darkTheme() {
+        normal = false
+        notification()
     }
 }
