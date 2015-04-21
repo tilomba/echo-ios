@@ -76,7 +76,7 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
         return true
     }
     
-    func draw(newTokens: TokenList) {
+    func draw(newTokens: TokenList, fromPaste: Bool = false) {
         for token in newTokens {
             let tokenView = TokenView(frame: CGRectZero)
             tokenView.text = token.rawValue
@@ -86,20 +86,39 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
             adjustInsertPointForTokenView(tokenView)
             
             if canAdd {
-                let position = CGPoint(x: tokenView.bounds.midX + insertPoint.x, y: tokenView.bounds.midY + insertPoint.y)
-                tokenView.center = CGPoint(x: bounds.midX, y: bounds.maxY + 75.0)
-                
-                addSubview(tokenView)
                 tokenViews.append(tokenView)
+                addSubview(tokenView)
                 
-                UIView.animateWithDuration(0.15) {
-                    tokenView.center = position
+                let position = CGPoint(x: tokenView.bounds.midX + insertPoint.x, y: tokenView.bounds.midY + insertPoint.y)
+                tokenView.center = position
+                
+                if !fromPaste {
+                    tokenView.center = CGPoint(x: bounds.midX, y: bounds.maxY + 75.0)
+                
+                    UIView.animateWithDuration(0.15) {
+                        tokenView.center = position
+                    }
                 }
                 
                 moveInsertPoint(tokenView.bounds.size)
             } else {
                 insertPoint = oldInsertPoint
                 canAdd = true
+            }
+        }
+        
+        if fromPaste {
+            for tokenView in tokenViews {
+                let position = tokenView.center
+                tokenView.center = popupView!.center
+                
+                UIView.animateWithDuration(0.15, animations: {
+                    tokenView.center = position
+                }, completion: { (completed) -> Void in
+                    if tokenView == self.tokenViews.last {
+                        self.dismiss()
+                    }
+                })
             }
         }
     }
@@ -188,9 +207,12 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
     }
     
     func pasteTokens(sender: AnyObject) {
-        clearTokens()
-        draw(NATODictionary.translateString(UIPasteboard.generalPasteboard().string!))
-        dismiss()
+        if let pasteboardString = UIPasteboard.generalPasteboard().string {
+            clearTokens()
+            draw(NATODictionary.translateString(pasteboardString), fromPaste: true)
+        } else {
+            dismiss()
+        }
     }
     
     func clearTokensFromView(sender: AnyObject) {
