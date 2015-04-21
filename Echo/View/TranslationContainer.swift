@@ -27,6 +27,8 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "clearTokens:", name: "clear", object: nil)
     }
     
     func insertText(text: String) {
@@ -166,5 +168,18 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
                 self.editingActive = true
             })
         }
+    }
+    
+    func clearTokens(sender: AnyObject) {
+        println("clearTokens")
+        
+        for tokenView in tokenViews {
+            tokenView.removeFromSuperview()
+        }
+        
+        tokenViews.removeAll()
+        tokenList.removeAll()
+        
+        dismiss()
     }
 }
