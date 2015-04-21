@@ -13,7 +13,6 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var translationContainer: TranslationContainer!
     @IBOutlet weak var button: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
