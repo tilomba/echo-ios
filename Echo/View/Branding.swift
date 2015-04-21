@@ -18,6 +18,10 @@ public class Branding : NSObject {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "theme", name: "theme", object: nil)
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "theme", object: nil)
+    }
+    
     func theme() {
         canvasTargets[0].setImage(Branding.imageOfBranding)
     }

@@ -33,6 +33,10 @@ public class EmbeddedButton: UIButton {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "theme", name: "theme", object: nil)
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "theme", object: nil)
+    }
+    
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

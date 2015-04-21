@@ -66,11 +66,10 @@ public class PopupView: UIView {
     }
     
     func theme() {
-        println("theme")
-//        for view in subviews {
-//            view.removeFromSuperview()
-//        }
-//        setup()
+        for aView in subviews {
+            aView.removeFromSuperview()
+        }
+        setup()
     }
     
     public func pastePressed(sender: AnyObject) {

@@ -34,6 +34,10 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "clearTokensFromView:", name: "clear", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "copyTokens:", name: "copy", object: nil)
     }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "theme", object: nil)
+    }
     
     func theme() {
         backgroundColor = ThemeManager.sharedInstance.containerColor()
