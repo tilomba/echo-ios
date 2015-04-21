@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A55646EE1AE602CF004698A0 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55646ED1AE602CF004698A0 /* ThemeManager.swift */; };
 		A5BE05C21AD1B20D0007821B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BE05C11AD1B20D0007821B /* AppDelegate.swift */; };
 		A5BE05C41AD1B20D0007821B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BE05C31AD1B20D0007821B /* MainViewController.swift */; };
 		A5BE05C71AD1B20D0007821B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5BE05C51AD1B20D0007821B /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A55646ED1AE602CF004698A0 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		A5BE05BC1AD1B20D0007821B /* Echo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Echo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5BE05C01AD1B20D0007821B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5BE05C11AD1B20D0007821B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				E45AE9E11AE35AA400C45B4C /* NATODictionary.swift */,
 				E45088251AE41D2700A6C4AC /* TokenList.swift */,
 				E45088271AE41E0300A6C4AC /* Token.swift */,
+				A55646ED1AE602CF004698A0 /* ThemeManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				E45AE9E21AE35AA400C45B4C /* NATODictionary.swift in Sources */,
 				A5BE05C41AD1B20D0007821B /* MainViewController.swift in Sources */,
 				E450882A1AE432FA00A6C4AC /* TokenView.swift in Sources */,
+				A55646EE1AE602CF004698A0 /* ThemeManager.swift in Sources */,
 				A5DD3AA01AE477D600A75E76 /* Branding.swift in Sources */,
 				A5DD3A9C1AE44F6100A75E76 /* CustomColorPalette.swift in Sources */,
 				E45088281AE41E0300A6C4AC /* Token.swift in Sources */,

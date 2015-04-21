@@ -36,7 +36,7 @@ public class EmbeddedButton: UIButton {
     }
     
     private func setup() {
-        setTitleColor(UIColor.lightThemeContainerColor(), forState: .Normal)
+        setTitleColor(ThemeManager.sharedInstance.containerColor(), forState: .Normal)
         titleLabel!.font = UIFont.helveticaNeueLight(Constants.fontSize)
     }
 }

@@ -37,7 +37,7 @@ public class TokenView: UILabel {
     }
     
     private func setup() {
-        backgroundColor = UIColor.lightThemeWordBlockColor()
+        backgroundColor = ThemeManager.sharedInstance.wordBlockColor()
         textColor = UIColor.wordBlockTextColor()
         font = UIFont.avenirRoman(15)
         textAlignment = .Center

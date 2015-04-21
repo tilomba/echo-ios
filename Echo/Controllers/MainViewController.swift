@@ -18,6 +18,9 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func setup() {
+        
+        view.backgroundColor = ThemeManager.sharedInstance.backgroundColor()
+        
         let dismissGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissGestureRecognizer:")
         dismissGestureRecognizer.numberOfTapsRequired = 1
         view.addGestureRecognizer(dismissGestureRecognizer)
@@ -29,4 +32,9 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
             translationContainer.dismiss()
         }
     }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return ThemeManager.sharedInstance.statusBarStyle()
+    }
+    
 }

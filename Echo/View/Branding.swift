@@ -16,7 +16,7 @@ public class Branding : NSObject {
     public class func drawCanvas1() {
 
         let context = UIGraphicsGetCurrentContext()
-        let fillColor = UIColor.lightThemeContainerColor()
+        let fillColor = ThemeManager.sharedInstance.containerColor()
 
         CGContextSaveGState(context)
         CGContextBeginTransparencyLayer(context, nil)

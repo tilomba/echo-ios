@@ -28,6 +28,8 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
+        
+        backgroundColor = ThemeManager.sharedInstance.containerColor()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pasteTokens:", name: "paste", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "clearTokensFromView:", name: "clear", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "copyTokens:", name: "copy", object: nil)

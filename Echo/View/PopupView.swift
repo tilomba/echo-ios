@@ -36,8 +36,7 @@ public class PopupView: UIView {
     private func setup() {
         layer.cornerRadius = Constants.radius
         layer.masksToBounds = true
-        layer.backgroundColor = UIColor.blackColor().CGColor
-        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: ThemeManager.sharedInstance.blurStyle()))
         blurView.bounds = bounds
         blurView.center = center
         addSubview(blurView)
