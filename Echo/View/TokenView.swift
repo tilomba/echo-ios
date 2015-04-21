@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable
 public class TokenView: UILabel {
-    struct Constants {
+    public struct Constants {
         static let xMargin = CGFloat(8.0)
         static let yMargin = CGFloat(6.0)
     }
@@ -19,6 +19,14 @@ public class TokenView: UILabel {
         didSet {
             sizeToFit()
             bounds = CGRectInset(bounds, -Constants.xMargin, -Constants.yMargin)
+        }
+    }
+    
+    var token: Token? {
+        didSet {
+            if let token = token {
+                text = token.rawValue
+            }
         }
     }
     
@@ -32,23 +40,23 @@ public class TokenView: UILabel {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "theme", name: "theme", object: nil)
     }
+ 
+    required public init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "theme", object: nil)
     }
 
-    required public init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func theme() {
-        backgroundColor = ThemeManager.sharedInstance.wordBlockColor()
-        textColor = UIColor.wordBlockTextColor()
-    }
-    
     private func setup() {
         font = UIFont.avenirRoman(15)
         textAlignment = .Center
         theme()
+    }
+    
+    public func theme() {
+        backgroundColor = ThemeManager.sharedInstance.wordBlockColor()
+        textColor = UIColor.wordBlockTextColor()
     }
 }

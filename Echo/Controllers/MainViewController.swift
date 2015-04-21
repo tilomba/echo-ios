@@ -8,18 +8,17 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UIGestureRecognizerDelegate {
+public class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var translationContainer: TranslationContainer!
     @IBOutlet weak var button: UIButton!
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
     
-    func setup() {
-
+    private func setup() {
         let dismissGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissGestureRecognizer:")
         dismissGestureRecognizer.numberOfTapsRequired = 1
         view.addGestureRecognizer(dismissGestureRecognizer)
@@ -39,7 +38,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         theme()
     }
     
-    func theme() {
+    public func theme() {
         view.backgroundColor = ThemeManager.sharedInstance.backgroundColor()
         ThemeManager.sharedInstance.statusBarStyle()
         setNeedsStatusBarAppearanceUpdate()
@@ -49,21 +48,21 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "theme", object: nil)
     }
     
-    func swipeUpGestureRecognizer(sender: UISwipeGestureRecognizer) {
+    public func swipeUpGestureRecognizer(sender: UISwipeGestureRecognizer) {
         ThemeManager.sharedInstance.lightTheme()
     }
     
-    func swipeDownGestureRecognizer(sender: UISwipeGestureRecognizer) {
+    public func swipeDownGestureRecognizer(sender: UISwipeGestureRecognizer) {
         ThemeManager.sharedInstance.darkTheme()
     }
     
-    func dismissGestureRecognizer(sender: AnyObject) {
+    public func dismissGestureRecognizer(sender: AnyObject) {
         if translationContainer.popupVisible {
             translationContainer.dismiss()
         }
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    override public func preferredStatusBarStyle() -> UIStatusBarStyle {
         return ThemeManager.sharedInstance.statusBarStyle()
     }
 }

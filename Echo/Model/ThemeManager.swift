@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ThemeManager {
+public class ThemeManager {
     
-    var normal = false
+    public var normal = false
     
     class var sharedInstance: ThemeManager {
         struct Singleton {
@@ -19,7 +19,6 @@ class ThemeManager {
         
         return Singleton.instance
     }
-    
     
     // MARK: Styles
     func statusBarStyle() -> UIStatusBarStyle {
@@ -44,17 +43,17 @@ class ThemeManager {
     }
     
     // MARK: Switch Function(s)
-    func notification() {
+    func sendThemeChangedNotification() {
         NSNotificationCenter.defaultCenter().postNotificationName("theme", object: self)
     }
     
     func lightTheme() {
         normal = true
-        notification()
+        sendThemeChangedNotification()
     }
     
     func darkTheme() {
         normal = false
-        notification()
+        sendThemeChangedNotification()
     }
 }

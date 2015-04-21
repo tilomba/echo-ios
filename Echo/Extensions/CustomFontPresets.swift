@@ -9,7 +9,6 @@
 import UIKit
 
 extension UIFont {
-    
     // MARK: Avenir Style
     class func avenirBook(size: CGFloat) -> UIFont {
         return UIFont(name: "Avenir-Book", size: size)!

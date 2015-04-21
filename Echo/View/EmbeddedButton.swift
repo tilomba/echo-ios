@@ -11,11 +11,11 @@ import UIKit
 @IBDesignable
 public class EmbeddedButton: UIButton {
     
-    var pasteButton: UIButton!
-    var clearButton: UIButton!
-    var copyButton: UIButton!
+    private var pasteButton: UIButton!
+    private var clearButton: UIButton!
+    private var copyButton: UIButton!
     
-    struct Constants {
+    private struct Constants {
         static let radius = CGFloat(6)
         static let fontSize = CGFloat(17.0)
     }
@@ -46,7 +46,7 @@ public class EmbeddedButton: UIButton {
         theme()
     }
     
-    func theme() {
+    public func theme() {
         setTitleColor(ThemeManager.sharedInstance.containerColor(), forState: .Normal)
     }
 }

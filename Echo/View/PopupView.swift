@@ -11,11 +11,11 @@ import UIKit
 @IBDesignable
 public class PopupView: UIView {
     
-    var pasteButton: EmbeddedButton!
-    var clearButton: EmbeddedButton!
-    var copyButton: EmbeddedButton!
+    private var pasteButton: EmbeddedButton!
+    private var clearButton: EmbeddedButton!
+    private var copyButton: EmbeddedButton!
     
-    struct Constants {
+    private struct Constants {
         static let radius = CGFloat(6)
         static let fontSize = CGFloat(17.0)
     }
@@ -27,12 +27,6 @@ public class PopupView: UIView {
     override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "theme", name: "theme", object: nil)
-    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "theme", object: nil)
     }
     
     required public init(coder aDecoder: NSCoder) {
@@ -48,27 +42,29 @@ public class PopupView: UIView {
         blurView.center = center
         addSubview(blurView)
         
-        let buttonRect = CGRect(x: 0.0, y: 0.0, width: bounds.size.width / 3.0, height: bounds.size.height)
+        let width = bounds.size.width / 3.0
+        let widthOffset = width / 2.0
+        let height = bounds.size.height
+        let y = height / 2.0
+        
+        let buttonRect = CGRect(x: 0.0, y: 0.0, width: width, height: height)
         pasteButton = EmbeddedButton(title: "paste")
         pasteButton.frame = buttonRect
-        pasteButton.center = CGPoint(x: bounds.size.width / 3.0 - bounds.size.width / 6.0, y: bounds.size.height / 2.0)
+        pasteButton.center = CGPoint(x: width - widthOffset, y: y)
         pasteButton.addTarget(self, action: "pastePressed:", forControlEvents: .TouchDown)
         blurView.contentView.addSubview(pasteButton)
 
         clearButton = EmbeddedButton(title: "clear")
         clearButton.frame = buttonRect
-        clearButton.center = CGPoint(x: bounds.size.width / 3.0 + bounds.size.width / 6.0, y: bounds.size.height / 2.0)
+        clearButton.center = CGPoint(x: 2.0 * width - widthOffset, y: y)
         clearButton.addTarget(self, action: "clearPressed:", forControlEvents: .TouchDown)
         blurView.contentView.addSubview(clearButton)
         
         copyButton = EmbeddedButton(title: "copy")
         copyButton.frame = buttonRect
-        copyButton.center = CGPoint(x: bounds.size.width / 3.0 * 2.0 + bounds.size.width / 6.0, y: bounds.size.height / 2.0)
+        copyButton.center = CGPoint(x: 3.0 * width - widthOffset, y: y)
         copyButton.addTarget(self, action: "copyPressed:", forControlEvents: .TouchDown)
         blurView.contentView.addSubview(copyButton)
-    }
-    
-    func theme() {
     }
     
     public func pastePressed(sender: AnyObject) {

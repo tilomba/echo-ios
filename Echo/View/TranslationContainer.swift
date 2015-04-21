@@ -8,24 +8,25 @@
 
 import UIKit
 
-class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
+public class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
     
-    var insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin, y: Constants.yStartPosition + TokenView.Constants.yMargin)
-    var popupView: PopupView?
-    var editingActive = true
-    var popupVisible = false
+    private var insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin, y: Constants.yStartPosition + TokenView.Constants.yMargin)
+    private var popupView: PopupView?
+    private var editingActive = true
+    public var popupVisible = false
     
-    struct Constants {
+    private struct Constants {
         static let spacing = CGFloat(10.0)
         static let xStartPosition = CGFloat(10.0)
         static let yStartPosition = CGFloat(13.0)
+        static let popupRect = CGRect(x: 0.0, y: 0.0, width: 299.0, height: 93.0)
     }
     
-    var tokenList = TokenList()
-    var tokenViews = [TokenView]()
-    var canAdd = true
+    private var tokenViews = [TokenView]()
+    private var canAdd = true
     
-    required init(coder aDecoder: NSCoder) {
+    // MARK: init/deinit
+    required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         theme()
         
@@ -42,30 +43,37 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "copy", object: nil)
     }
     
-    func theme() {
+    // MARK: theme
+    public func theme() {
         backgroundColor = ThemeManager.sharedInstance.containerColor()
+        
+        if let popupView = popupView {
+            popupView.removeFromSuperview()
+        }
+        
+        popupView = PopupView(frame: Constants.popupRect)
+        
+        if popupVisible {
+            addSubview(popupView!)
+            popupView!.center = CGPoint(x: bounds.midX, y: bounds.midY)
+            popupView!.layer.zPosition = 100
+        }
     }
     
-    func insertText(text: String) {
+    // UIKeyInput
+    public func insertText(text: String) {
         if !editingActive {
             return
         }
         
         let newTokens = NATODictionary.translateString(text)
-        tokenList += newTokens
         draw(newTokens)
     }
     
-    func deleteBackward() {
+    public func deleteBackward() {
         if !editingActive {
             return
         }
-        
-        if tokenList.isEmpty {
-            return
-        }
-        
-        tokenList.removeLast()
         
         if tokenViews.isEmpty {
             return
@@ -74,29 +82,26 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
         let tokenViewToRemove = tokenViews.removeLast()
         moveInsertPointAfterTokenView(tokenViewToRemove)
         
-        UIView.animateWithDuration(0.15, animations: { () -> Void in
+        UIView.animateWithDuration(0.15, animations: {
             tokenViewToRemove.center = CGPoint(x: self.bounds.midX, y: self.bounds.maxY + 75.0)
         }) { (completed) -> Void in
             tokenViewToRemove.removeFromSuperview()
         }
     }
     
-    func hasText() -> Bool {
-        return !tokenList.isEmpty
+    public func hasText() -> Bool {
+        return !tokenViews.isEmpty
     }
     
-    override func canBecomeFirstResponder() -> Bool {
+    override public func canBecomeFirstResponder() -> Bool {
         return true
     }
     
-    func draw(newTokens: TokenList, fromPaste: Bool = false) {
-        if fromPaste {
-            tokenList = newTokens
-        }
-        
+    // MARK: Editing methods
+    private func draw(newTokens: TokenList, fromPaste: Bool = false) {
         for token in newTokens {
             let tokenView = TokenView(frame: CGRectZero)
-            tokenView.text = token.rawValue
+            tokenView.token = token
             
             // check if the insertion point needs to be moved down a line because it's too wide to fit on the current line
             let oldInsertPoint = insertPoint
@@ -140,18 +145,17 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
         }
     }
     
-    func clearTokens() {
+    private func clearTokens() {
         for tokenView in tokenViews {
             tokenView.removeFromSuperview()
         }
         
         tokenViews.removeAll()
-        tokenList.removeAll()
         
         resetInsertPoint()
     }
     
-    func moveInsertPointAfterTokenView(tokenView: TokenView) {
+    private func moveInsertPointAfterTokenView(tokenView: TokenView) {
         insertPoint.y = tokenView.center.y - tokenView.bounds.midY
         insertPoint.x = tokenView.center.x - tokenView.bounds.midX
         if insertPoint.x >= bounds.maxX {
@@ -159,14 +163,14 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
         }
     }
     
-    func moveInsertPoint(tokenSize: CGSize) {
+    private func moveInsertPoint(tokenSize: CGSize) {
         insertPoint.x += tokenSize.width + Constants.spacing
         if insertPoint.x >= bounds.maxX {
             moveDownALine(tokenSize.height)
         }
     }
     
-    func moveDownALine(height: CGFloat) {
+    private func moveDownALine(height: CGFloat) {
         insertPoint.x = Constants.xStartPosition + TokenView.Constants.xMargin
         insertPoint.y += height + Constants.spacing
         
@@ -175,16 +179,17 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
         }
     }
     
-    func adjustInsertPointForTokenView(tokenView: TokenView) {
+    private func adjustInsertPointForTokenView(tokenView: TokenView) {
         if insertPoint.x + tokenView.bounds.size.width >= bounds.maxX {
             moveDownALine(tokenView.bounds.size.height)
         }
     }
     
-    func resetInsertPoint() {
+    private func resetInsertPoint() {
         insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin, y: Constants.yStartPosition + TokenView.Constants.yMargin)
     }
     
+    // MARK: Popup methods
     @IBAction func longPressGestureRecognizer(sender: AnyObject) {
         if popupVisible {
             return
@@ -192,7 +197,7 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
         
         if sender.state == UIGestureRecognizerState.Began {
             if nil == popupView {
-                popupView = PopupView(frame: CGRect(x: 0.0, y: 0.0, width: 299.0, height: 93.0))
+                popupView = PopupView(frame: Constants.popupRect)
             }
             
             addSubview(popupView!)
@@ -210,20 +215,21 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
         }
     }
     
-    func dismiss() {
+    public func dismiss() {
         if popupVisible {
-            UIView.animateWithDuration(0.15, animations: { () -> Void in
+            UIView.animateWithDuration(0.15, animations: {
                 self.popupView!.bounds = CGRectZero
             }, completion: { (completed) -> Void in
                 self.popupView!.removeFromSuperview()
-                self.popupView!.bounds = CGRect(x: 0.0, y: 0.0, width: 299.0, height: 93.0)
+                self.popupView!.bounds = Constants.popupRect
                 self.popupVisible = false
                 self.editingActive = true
             })
         }
     }
     
-    func pasteTokens(sender: AnyObject) {
+    // MARK: Notification methods
+    public func pasteTokens(sender: AnyObject) {
         if let pasteboardString = UIPasteboard.generalPasteboard().string {
             clearTokens()
             draw(NATODictionary.translateString(pasteboardString), fromPaste: true)
@@ -232,13 +238,13 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
         }
     }
     
-    func clearTokensFromView(sender: AnyObject) {
+    public func clearTokensFromView(sender: AnyObject) {
         clearTokens()
         dismiss()
     }
     
-    func copyTokens(sender: AnyObject) {
-        UIPasteboard.generalPasteboard().string = tokenList.map { $0.rawValue }.reduce("", combine: { $0! + " " + $1 })
+    public func copyTokens(sender: AnyObject) {
+        UIPasteboard.generalPasteboard().string = tokenViews.map { $0.token!.rawValue }.reduce("", combine: { $0! + " " + $1 })
         dismiss()
     }
 }

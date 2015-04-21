@@ -8,9 +8,9 @@
 
 import Foundation
 
-class NATODictionary {
+public class NATODictionary {
 
-    static let dictionary = [
+    private static let dictionary = [
         "A": "Alpha",
         "B": "Bravo",
         "C": "Charlie",
