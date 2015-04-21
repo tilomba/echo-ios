@@ -63,8 +63,4 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return ThemeManager.sharedInstance.statusBarStyle()
     }
-    
-    @IBAction func swipeUp(sender: UISwipeGestureRecognizer) {
-        println("swipe up")
-    }
 }

@@ -13,19 +13,14 @@ public class Branding : NSObject {
         static var canvasTargets: [AnyObject]?
     }
     
-//    var fillColor = ThemeManager.sharedInstance.containerColor()
-    
     override init() {
         super.init()
-//        theme()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "theme", name: "theme", object: nil)
     }
     
-//    func theme() {
-//        
-//        fillColor = ThemeManager.sharedInstance.containerColor()
-//        
-//    }
+    func theme() {
+        canvasTargets[0].setImage(Branding.imageOfBranding)
+    }
     
     public class func drawCanvas1() {
 
@@ -202,9 +197,9 @@ public class Branding : NSObject {
     }
 
     public class var imageOfBranding: UIImage {
-        if Cache.imageOfBranding != nil {
-            return Cache.imageOfBranding!
-        }
+//        if Cache.imageOfBranding != nil {
+//            return Cache.imageOfBranding!
+//        }
 
         UIGraphicsBeginImageContextWithOptions(CGSizeMake(89, 89), false, 0)
         Branding.drawCanvas1()
