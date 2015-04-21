@@ -42,4 +42,10 @@ class ThemeManager {
     func wordBlockColor() -> UIColor {
         return normal ? UIColor(red: 0.8, green: 0.321, blue: 0.321, alpha: 1) : UIColor(red: 1.0, green: 0.533, blue: 0.149, alpha: 1)
     }
+    
+    // MARK: Switch Function(s)
+    func toggle() {
+        normal = !normal
+        NSNotificationCenter.defaultCenter().postNotificationName("theme", object: self)
+    }
 }

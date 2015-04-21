@@ -26,9 +26,11 @@ public class EmbeddedButton: UIButton {
     
     public init(title: String) {
         super.init(frame: CGRectZero)
-        
+
         setTitle(title, forState: .Normal)
         setup()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "theme", name: "theme", object: nil)
     }
     
     required public init(coder aDecoder: NSCoder) {
@@ -36,7 +38,11 @@ public class EmbeddedButton: UIButton {
     }
     
     private func setup() {
-        setTitleColor(ThemeManager.sharedInstance.containerColor(), forState: .Normal)
         titleLabel!.font = UIFont.helveticaNeueLight(Constants.fontSize)
+        theme()
+    }
+    
+    func theme() {
+        setTitleColor(ThemeManager.sharedInstance.containerColor(), forState: .Normal)
     }
 }

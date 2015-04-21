@@ -11,6 +11,8 @@ import UIKit
 class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var translationContainer: TranslationContainer!
+    @IBOutlet weak var button: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +37,12 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return ThemeManager.sharedInstance.statusBarStyle()
+    }
+    
+    @IBAction func changeTheme() {
+        println("test")
+        
+        ThemeManager.sharedInstance.toggle()
     }
     
 }

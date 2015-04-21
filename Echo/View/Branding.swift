@@ -13,6 +13,8 @@ public class Branding : NSObject {
         static var canvasTargets: [AnyObject]?
     }
 
+    
+    
     public class func drawCanvas1() {
 
         let context = UIGraphicsGetCurrentContext()

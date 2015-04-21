@@ -27,12 +27,16 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        theme()
         
-        
-        backgroundColor = ThemeManager.sharedInstance.containerColor()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "theme", name: "theme", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pasteTokens:", name: "paste", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "clearTokensFromView:", name: "clear", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "copyTokens:", name: "copy", object: nil)
+    }
+    
+    func theme() {
+        backgroundColor = ThemeManager.sharedInstance.containerColor()
     }
     
     func insertText(text: String) {
