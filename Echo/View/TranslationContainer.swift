@@ -78,7 +78,6 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
     
     func draw(newTokens: TokenList, fromPaste: Bool = false) {
         if fromPaste {
-            tokenList.removeAll()
             tokenList = newTokens
         }
         
