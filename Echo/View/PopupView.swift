@@ -69,15 +69,14 @@ public class PopupView: UIView {
     }
     
     public func pastePressed(sender: AnyObject) {
-        println("paste")
+        NSNotificationCenter.defaultCenter().postNotificationName("paste", object: self)
     }
     
     public func clearPressed(sender: AnyObject) {
-        println("clear")
         NSNotificationCenter.defaultCenter().postNotificationName("clear", object: self)
     }
     
     public func copyPressed(sender: AnyObject) {
-        println("copy")
+        NSNotificationCenter.defaultCenter().postNotificationName("copy", object: self)
     }
 }

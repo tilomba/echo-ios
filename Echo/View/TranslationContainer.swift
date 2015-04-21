@@ -28,7 +28,9 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "clearTokens:", name: "clear", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "pasteTokens:", name: "paste", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "clearTokensFromView:", name: "clear", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "copyTokens:", name: "copy", object: nil)
     }
     
     func insertText(text: String) {
@@ -102,6 +104,17 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
         }
     }
     
+    func clearTokens() {
+        for tokenView in tokenViews {
+            tokenView.removeFromSuperview()
+        }
+        
+        tokenViews.removeAll()
+        tokenList.removeAll()
+        
+        resetInsertPoint()
+    }
+    
     func moveInsertPointAfterTokenView(tokenView: TokenView) {
         insertPoint.y = tokenView.center.y - tokenView.bounds.midY
         insertPoint.x = tokenView.center.x - tokenView.bounds.midX
@@ -130,6 +143,10 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
         if insertPoint.x + tokenView.bounds.size.width >= bounds.maxX {
             moveDownALine(tokenView.bounds.size.height)
         }
+    }
+    
+    func resetInsertPoint() {
+        insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin, y: Constants.yStartPosition + TokenView.Constants.yMargin)
     }
     
     @IBAction func longPressGestureRecognizer(sender: AnyObject) {
@@ -170,16 +187,19 @@ class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
         }
     }
     
-    func clearTokens(sender: AnyObject) {
-        println("clearTokens")
-        
-        for tokenView in tokenViews {
-            tokenView.removeFromSuperview()
-        }
-        
-        tokenViews.removeAll()
-        tokenList.removeAll()
-        
+    func pasteTokens(sender: AnyObject) {
+        clearTokens()
+        draw(NATODictionary.translateString(UIPasteboard.generalPasteboard().string!))
+        dismiss()
+    }
+    
+    func clearTokensFromView(sender: AnyObject) {
+        clearTokens()
+        dismiss()
+    }
+    
+    func copyTokens(sender: AnyObject) {
+        UIPasteboard.generalPasteboard().string = tokenList.map { $0.rawValue }.reduce("", combine: { $0! + " " + $1 })
         dismiss()
     }
 }
