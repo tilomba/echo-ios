@@ -8,21 +8,27 @@
 
 import UIKit
 
-public class MainViewController: UIViewController, UIGestureRecognizerDelegate {
+public class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var translationContainer: TranslationContainer!
     @IBOutlet weak var button: UIButton!
+
+    let transition = PopAnimator()
+    
+    @IBOutlet weak var textField: UITextField!
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+
         setup()
+        
+        textField.becomeFirstResponder()
     }
     
     private func setup() {
         let dismissGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissGestureRecognizer:")
         dismissGestureRecognizer.numberOfTapsRequired = 1
         view.addGestureRecognizer(dismissGestureRecognizer)
-        translationContainer.becomeFirstResponder()
         
         let swipeUpGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipeUpGestureRecognizer:"))
         swipeUpGestureRecognizer.direction = .Up
@@ -40,7 +46,9 @@ public class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     public func theme() {
         view.backgroundColor = ThemeManager.sharedInstance.backgroundColor()
-        ThemeManager.sharedInstance.statusBarStyle()
+        textField.resignFirstResponder()
+        textField.keyboardAppearance = ThemeManager.sharedInstance.keyboardStyle()
+        textField.becomeFirstResponder()
         setNeedsStatusBarAppearanceUpdate()
     }
     
@@ -64,5 +72,18 @@ public class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override public func preferredStatusBarStyle() -> UIStatusBarStyle {
         return ThemeManager.sharedInstance.statusBarStyle()
+    }
+}
+
+extension MainViewController: UIViewControllerTransitioningDelegate {
+    @IBAction func showOptionsViewController(sender: UIButton) {
+        let optionsViewController = storyboard!.instantiateViewControllerWithIdentifier("optionsViewController") as! OptionsViewController
+        optionsViewController.transitioningDelegate = self
+        presentViewController(optionsViewController, animated: true, completion: nil)
+    }
+    
+    public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return transition
     }
 }

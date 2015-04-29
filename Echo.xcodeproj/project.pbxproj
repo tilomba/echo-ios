@@ -24,6 +24,8 @@
 		E45088281AE41E0300A6C4AC /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45088271AE41E0300A6C4AC /* Token.swift */; };
 		E450882A1AE432FA00A6C4AC /* TokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45088291AE432FA00A6C4AC /* TokenView.swift */; };
 		E45AE9E21AE35AA400C45B4C /* NATODictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45AE9E11AE35AA400C45B4C /* NATODictionary.swift */; };
+		E46B15801AE9C8E8008E10C2 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46B157F1AE9C8E8008E10C2 /* OptionsViewController.swift */; };
+		E46B15821AE9CA56008E10C2 /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46B15811AE9CA56008E10C2 /* PopAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		E45088271AE41E0300A6C4AC /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		E45088291AE432FA00A6C4AC /* TokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenView.swift; sourceTree = "<group>"; };
 		E45AE9E11AE35AA400C45B4C /* NATODictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NATODictionary.swift; sourceTree = "<group>"; };
+		E46B157F1AE9C8E8008E10C2 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
+		E46B15811AE9CA56008E10C2 /* PopAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopAnimator.swift; path = Echo/View/Animators/PopAnimator.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 				A5BE05C11AD1B20D0007821B /* AppDelegate.swift */,
 				A5DD3A9A1AE44F3600A75E76 /* Extensions */,
 				A5E7DD6B1AE37E7700FAC9F7 /* View */,
+				E46B15831AE9CB9C008E10C2 /* Animators */,
 				A5E7DD6A1AE37E4F00FAC9F7 /* Controllers */,
 				A5E7DD691AE37E4800FAC9F7 /* Model */,
 				A5BE05C51AD1B20D0007821B /* Main.storyboard */,
@@ -162,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				A5BE05C31AD1B20D0007821B /* MainViewController.swift */,
+				E46B157F1AE9C8E8008E10C2 /* OptionsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -176,6 +182,15 @@
 				E40C9F161AE5D4030093D734 /* EmbeddedButton.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E46B15831AE9CB9C008E10C2 /* Animators */ = {
+			isa = PBXGroup;
+			children = (
+				E46B15811AE9CA56008E10C2 /* PopAnimator.swift */,
+			);
+			name = Animators;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,6 +296,8 @@
 				A5C49FC31AE56CA70081E009 /* PopupView.swift in Sources */,
 				E40C9F171AE5D4030093D734 /* EmbeddedButton.swift in Sources */,
 				E45088261AE41D2800A6C4AC /* TokenList.swift in Sources */,
+				E46B15801AE9C8E8008E10C2 /* OptionsViewController.swift in Sources */,
+				E46B15821AE9CA56008E10C2 /* PopAnimator.swift in Sources */,
 				E45AE9E21AE35AA400C45B4C /* NATODictionary.swift in Sources */,
 				A5BE05C41AD1B20D0007821B /* MainViewController.swift in Sources */,
 				E450882A1AE432FA00A6C4AC /* TokenView.swift in Sources */,

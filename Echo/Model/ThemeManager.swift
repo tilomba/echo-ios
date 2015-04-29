@@ -25,6 +25,10 @@ public class ThemeManager {
         return normal ? .Default : .LightContent
     }
     
+    func keyboardStyle() -> UIKeyboardAppearance {
+        return normal ? .Light : .Dark
+    }
+    
     func blurStyle() -> UIBlurEffectStyle {
         return normal ? .Dark : .ExtraLight
     }

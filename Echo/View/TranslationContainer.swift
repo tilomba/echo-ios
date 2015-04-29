@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelegate {
+public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     
     private var insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin, y: Constants.yStartPosition + TokenView.Constants.yMargin)
     private var popupView: PopupView?
@@ -28,6 +28,7 @@ public class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelega
     // MARK: init/deinit
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
         theme()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "theme", name: "theme", object: nil)
@@ -61,41 +62,41 @@ public class TranslationContainer: UIView, UIKeyInput, UIGestureRecognizerDelega
     }
     
     // UIKeyInput
-    public func insertText(text: String) {
-        if !editingActive {
-            return
-        }
-        
-        let newTokens = NATODictionary.translateString(text)
-        draw(newTokens)
-    }
+//    public func insertText(text: String) {
+//        if !editingActive {
+//            return
+//        }
+//        
+//        let newTokens = NATODictionary.translateString(text)
+//        draw(newTokens)
+//    }
+//    
+//    public func deleteBackward() {
+//        if !editingActive {
+//            return
+//        }
+//        
+//        if tokenViews.isEmpty {
+//            return
+//        }
+//        
+//        let tokenViewToRemove = tokenViews.removeLast()
+//        moveInsertPointAfterTokenView(tokenViewToRemove)
+//        
+//        UIView.animateWithDuration(0.15, animations: {
+//            tokenViewToRemove.center = CGPoint(x: self.bounds.midX, y: self.bounds.maxY + 75.0)
+//        }) { (completed) -> Void in
+//            tokenViewToRemove.removeFromSuperview()
+//        }
+//    }
+//    
+//    public func hasText() -> Bool {
+//        return !tokenViews.isEmpty
+//    }
     
-    public func deleteBackward() {
-        if !editingActive {
-            return
-        }
-        
-        if tokenViews.isEmpty {
-            return
-        }
-        
-        let tokenViewToRemove = tokenViews.removeLast()
-        moveInsertPointAfterTokenView(tokenViewToRemove)
-        
-        UIView.animateWithDuration(0.15, animations: {
-            tokenViewToRemove.center = CGPoint(x: self.bounds.midX, y: self.bounds.maxY + 75.0)
-        }) { (completed) -> Void in
-            tokenViewToRemove.removeFromSuperview()
-        }
-    }
-    
-    public func hasText() -> Bool {
-        return !tokenViews.isEmpty
-    }
-    
-    override public func canBecomeFirstResponder() -> Bool {
-        return true
-    }
+//    override public func canBecomeFirstResponder() -> Bool {
+//        return true
+//    }
     
     // MARK: Editing methods
     private func draw(newTokens: TokenList, fromPaste: Bool = false) {
