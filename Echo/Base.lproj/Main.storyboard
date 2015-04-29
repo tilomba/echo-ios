@@ -20,12 +20,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfh-Ba-kUb" customClass="TranslationContainer" customModule="Echo" customModuleProvider="target">
                                 <rect key="frame" x="16" y="109" width="343" height="312"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qNe-ja-VvF">
-                                        <rect key="frame" x="-200" y="-200" width="97" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qNe-ja-VvF" customClass="DummyTextField" customModule="Echo" customModuleProvider="target">
+                                        <rect key="frame" x="-200" y="-200" width="30" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                         <connections>
-                                            <outlet property="delegate" destination="gfh-Ba-kUb" id="BFE-u0-ufG"/>
+                                            <outlet property="delegate" destination="gfh-Ba-kUb" id="ssC-VQ-lkt"/>
+                                            <outlet property="translationContainer" destination="gfh-Ba-kUb" id="wyI-53-48n"/>
                                         </connections>
                                     </textField>
                                 </subviews>

@@ -8,13 +8,13 @@
 
 import UIKit
 
-public class TranslationContainer: UIView, UIGestureRecognizerDelegate, UITextFieldDelegate {
+public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     
     private var insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin, y: Constants.yStartPosition + TokenView.Constants.yMargin)
     private var popupView: PopupView?
     private var editingActive = true
     public var popupVisible = false
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textField: DummyTextField!
     
     private struct Constants {
         static let spacing = CGFloat(10.0)
@@ -67,43 +67,43 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate, UITextFi
             popupView!.layer.zPosition = 100
         }
     }
+
+    func doInsertText(text: String) {
+        insertText(text)
+    }
     
+    func doDeleteBackwards() {
+        deleteBackward()
+    }
+        
     // UIKeyInput
-//    public func insertText(text: String) {
-//        if !editingActive {
-//            return
-//        }
-//        
-//        let newTokens = NATODictionary.translateString(text)
-//        draw(newTokens)
-//    }
-//    
-//    public func deleteBackward() {
-//        if !editingActive {
-//            return
-//        }
-//        
-//        if tokenViews.isEmpty {
-//            return
-//        }
-//        
-//        let tokenViewToRemove = tokenViews.removeLast()
-//        moveInsertPointAfterTokenView(tokenViewToRemove)
-//        
-//        UIView.animateWithDuration(0.15, animations: {
-//            tokenViewToRemove.center = CGPoint(x: self.bounds.midX, y: self.bounds.maxY + 75.0)
-//        }) { (completed) -> Void in
-//            tokenViewToRemove.removeFromSuperview()
-//        }
-//    }
-//    
-//    public func hasText() -> Bool {
-//        return !tokenViews.isEmpty
-//    }
-    
-//    override public func canBecomeFirstResponder() -> Bool {
-//        return true
-//    }
+    public func insertText(text: String) {
+        if !editingActive {
+            return
+        }
+        
+        let newTokens = NATODictionary.translateString(text)
+        draw(newTokens)
+    }
+
+    public func deleteBackward() {
+        if !editingActive {
+            return
+        }
+        
+        if tokenViews.isEmpty {
+            return
+        }
+        
+        let tokenViewToRemove = tokenViews.removeLast()
+        moveInsertPointAfterTokenView(tokenViewToRemove)
+        
+        UIView.animateWithDuration(0.15, animations: {
+            tokenViewToRemove.center = CGPoint(x: self.bounds.midX, y: self.bounds.maxY + 75.0)
+        }) { (completed) -> Void in
+            tokenViewToRemove.removeFromSuperview()
+        }
+    }
     
     // MARK: Editing methods
     private func draw(newTokens: TokenList, fromPaste: Bool = false) {
