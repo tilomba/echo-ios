@@ -8,21 +8,17 @@
 
 import UIKit
 
-public class MainViewController: UIViewController, UIGestureRecognizerDelegate, UITextFieldDelegate {
+public class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var translationContainer: TranslationContainer!
     @IBOutlet weak var button: UIButton!
 
     let transition = PopAnimator()
     
-    @IBOutlet weak var textField: UITextField!
-    
     override public func viewDidLoad() {
         super.viewDidLoad()
 
         setup()
-        
-        textField.becomeFirstResponder()
     }
     
     private func setup() {
@@ -46,9 +42,6 @@ public class MainViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     public func theme() {
         view.backgroundColor = ThemeManager.sharedInstance.backgroundColor()
-        textField.resignFirstResponder()
-        textField.keyboardAppearance = ThemeManager.sharedInstance.keyboardStyle()
-        textField.becomeFirstResponder()
         setNeedsStatusBarAppearanceUpdate()
     }
     

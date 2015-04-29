@@ -19,9 +19,20 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfh-Ba-kUb" customClass="TranslationContainer" customModule="Echo" customModuleProvider="target">
                                 <rect key="frame" x="16" y="109" width="343" height="312"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qNe-ja-VvF">
+                                        <rect key="frame" x="-200" y="-200" width="97" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="gfh-Ba-kUb" id="BFE-u0-ufG"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
                                 <color key="backgroundColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
+                                    <outlet property="textField" destination="qNe-ja-VvF" id="g1d-I6-hyG"/>
                                     <outletCollection property="gestureRecognizers" destination="2YI-5v-hOM" appends="YES" id="djy-Gc-j9L"/>
                                 </connections>
                             </view>
@@ -41,14 +52,6 @@
                                     <action selector="showOptionsViewController:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PH6-12-yRI"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qNe-ja-VvF">
-                                <rect key="frame" x="-100" y="-100" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                <connections>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="N65-5D-YZr"/>
-                                </connections>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -75,7 +78,6 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="textField" destination="qNe-ja-VvF" id="Yzz-1n-CmN"/>
                         <outlet property="translationContainer" destination="gfh-Ba-kUb" id="CTb-8j-dBH"/>
                     </connections>
                 </viewController>

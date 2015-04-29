@@ -8,12 +8,13 @@
 
 import UIKit
 
-public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
+public class TranslationContainer: UIView, UIGestureRecognizerDelegate, UITextFieldDelegate {
     
     private var insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin, y: Constants.yStartPosition + TokenView.Constants.yMargin)
     private var popupView: PopupView?
     private var editingActive = true
     public var popupVisible = false
+    @IBOutlet weak var textField: UITextField!
     
     private struct Constants {
         static let spacing = CGFloat(10.0)
@@ -29,8 +30,6 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        theme()
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "theme", name: "theme", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pasteTokens:", name: "paste", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "clearTokensFromView:", name: "clear", object: nil)
@@ -44,9 +43,17 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "copy", object: nil)
     }
     
+    public override func awakeFromNib() {
+        theme()
+    }
+    
     // MARK: theme
     public func theme() {
         backgroundColor = ThemeManager.sharedInstance.containerColor()
+        
+        textField.resignFirstResponder()
+        textField.keyboardAppearance = ThemeManager.sharedInstance.keyboardStyle()
+        textField.becomeFirstResponder()
         
         if let popupView = popupView {
             popupView.removeFromSuperview()
