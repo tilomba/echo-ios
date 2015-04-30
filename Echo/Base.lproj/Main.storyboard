@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E11f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -17,26 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfh-Ba-kUb" customClass="TranslationContainer" customModule="Echo" customModuleProvider="target">
-                                <rect key="frame" x="16" y="109" width="343" height="312"/>
-                                <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qNe-ja-VvF" customClass="DummyTextField" customModule="Echo" customModuleProvider="target">
-                                        <rect key="frame" x="-200" y="-200" width="30" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="gfh-Ba-kUb" id="ssC-VQ-lkt"/>
-                                            <outlet property="translationContainer" destination="gfh-Ba-kUb" id="wyI-53-48n"/>
-                                        </connections>
-                                    </textField>
-                                </subviews>
-                                <color key="backgroundColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outlet property="textField" destination="qNe-ja-VvF" id="g1d-I6-hyG"/>
-                                    <outletCollection property="gestureRecognizers" destination="2YI-5v-hOM" appends="YES" id="djy-Gc-j9L"/>
-                                </connections>
-                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h6X-KQ-uXS">
                                 <rect key="frame" x="166" y="42" width="45" height="45"/>
                                 <constraints>
@@ -44,26 +23,38 @@
                                     <constraint firstAttribute="width" constant="45" id="wKR-if-V1X"/>
                                 </constraints>
                             </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mUR-Zn-OjD">
+                                <rect key="frame" x="-4" y="89" width="383" height="352"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gfh-Ba-kUb" customClass="TranslationContainer" customModule="Echo" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="20" width="343" height="312"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qNe-ja-VvF" customClass="DummyTextField" customModule="Echo" customModuleProvider="target">
+                                                <rect key="frame" x="-200" y="-200" width="30" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="gfh-Ba-kUb" id="ssC-VQ-lkt"/>
+                                                    <outlet property="translationContainer" destination="gfh-Ba-kUb" id="wyI-53-48n"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outlet property="scrollView" destination="mUR-Zn-OjD" id="upX-Do-inb"/>
+                                            <outlet property="textField" destination="qNe-ja-VvF" id="g1d-I6-hyG"/>
+                                            <outletCollection property="gestureRecognizers" destination="2YI-5v-hOM" appends="YES" id="djy-Gc-j9L"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="CVz-1C-dJF"/>
                             <constraint firstItem="h6X-KQ-uXS" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="166" id="In6-vM-YnK"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="gfh-Ba-kUb" secondAttribute="bottom" constant="246" id="KEM-2p-8KV"/>
-                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="top" secondItem="h6X-KQ-uXS" secondAttribute="bottom" constant="22" id="MOO-RT-23B"/>
                             <constraint firstItem="h6X-KQ-uXS" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="22" id="TvB-FV-fCt"/>
-                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" symbolic="YES" id="bI0-Pr-hXX"/>
-                            <constraint firstAttribute="bottom" secondItem="gfh-Ba-kUb" secondAttribute="bottom" constant="478" id="cl8-ct-iFa"/>
-                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="g7b-Rh-Inw"/>
-                            <constraint firstItem="gfh-Ba-kUb" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="hxa-2r-wun"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="CVz-1C-dJF"/>
-                                <exclude reference="bI0-Pr-hXX"/>
-                                <exclude reference="cl8-ct-iFa"/>
-                            </mask>
-                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="jwM-nw-kxh" appends="YES" id="5Vr-ch-3cP"/>
                         </connections>

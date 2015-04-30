@@ -15,6 +15,7 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     private var editingActive = true
     public var popupVisible = false
     @IBOutlet weak var textField: DummyTextField!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     private struct Constants {
         static let spacing = CGFloat(10.0)
@@ -24,7 +25,6 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     }
     
     private var tokenViews = [TokenView]()
-    private var canAdd = true
     
     // MARK: init/deinit
     required public init(coder aDecoder: NSCoder) {
@@ -115,26 +115,21 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
             let oldInsertPoint = insertPoint
             adjustInsertPointForTokenView(tokenView)
             
-            if canAdd {
-                tokenViews.append(tokenView)
-                addSubview(tokenView)
-                
-                let position = CGPoint(x: tokenView.bounds.midX + insertPoint.x, y: tokenView.bounds.midY + insertPoint.y)
-                tokenView.center = position
-                
-                if !fromPaste {
-                    tokenView.center = CGPoint(x: bounds.midX, y: bounds.maxY + 75.0)
-                
-                    UIView.animateWithDuration(0.15) {
-                        tokenView.center = position
-                    }
+            tokenViews.append(tokenView)
+            addSubview(tokenView)
+            
+            let position = CGPoint(x: tokenView.bounds.midX + insertPoint.x, y: tokenView.bounds.midY + insertPoint.y)
+            tokenView.center = position
+            
+            if !fromPaste {
+                tokenView.center = CGPoint(x: bounds.midX, y: bounds.maxY + 75.0)
+            
+                UIView.animateWithDuration(0.15) {
+                    tokenView.center = position
                 }
-                
-                moveInsertPoint(tokenView.bounds.size)
-            } else {
-                insertPoint = oldInsertPoint
-                canAdd = true
             }
+            
+            moveInsertPoint(tokenView.bounds.size)
         }
         
         if fromPaste {
@@ -179,11 +174,13 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     }
     
     private func moveDownALine(height: CGFloat) {
+        let lineHeight = height + Constants.spacing
+        
         insertPoint.x = Constants.xStartPosition + TokenView.Constants.xMargin
-        insertPoint.y += height + Constants.spacing
+        insertPoint.y += lineHeight
         
         if insertPoint.y >= bounds.maxY {
-            canAdd = false
+            scrollView.contentOffset = CGPoint(x: 0.0, y: scrollView.contentOffset.y + lineHeight)
         }
     }
     
