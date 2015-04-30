@@ -17,7 +17,7 @@ public class EmbeddedButton: UIButton {
     
     private struct Constants {
         static let radius = CGFloat(6)
-        static let fontSize = CGFloat(17.0)
+        static let fontSize = CGFloat(14.5)
     }
     
     override public func prepareForInterfaceBuilder() {
@@ -42,7 +42,7 @@ public class EmbeddedButton: UIButton {
     }
     
     private func setup() {
-        titleLabel!.font = UIFont.helveticaNeueLight(Constants.fontSize)
+        titleLabel!.font = UIFont.avenirRoman(Constants.fontSize)
         theme()
     }
     
