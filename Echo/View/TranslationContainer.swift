@@ -110,7 +110,6 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
             tokenView.token = token
             
             // check if the insertion point needs to be moved down a line because it's too wide to fit on the current line
-            let oldInsertPoint = insertPoint
             adjustInsertPointForTokenView(tokenView)
             
             tokenViews.append(tokenView)
@@ -172,6 +171,8 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         if scrollView.contentSize.height < scrollView.bounds.size.height {
            scrollView.contentSize.height = scrollView.bounds.size.height
         }
+        
+        ensureInsertPointIsVisible(tokenView.bounds.size.height)
     }
     
     private func moveInsertPoint(tokenSize: CGSize) {
@@ -179,6 +180,7 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         if insertPoint.x >= bounds.maxX {
             moveDownALine(tokenSize.height)
         }
+        ensureInsertPointIsVisible(tokenSize.height)
     }
     
     private func moveDownALine(height: CGFloat) {
@@ -189,7 +191,6 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         
         if insertPoint.y >= bounds.maxY {
             scrollView.contentSize.height += lineHeight
-            scrollView.contentOffset.y += lineHeight
         }
     }
     
@@ -201,6 +202,13 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     
     private func resetInsertPoint() {
         insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin, y: Constants.yStartPosition + TokenView.Constants.yMargin)
+    }
+    
+    private func ensureInsertPointIsVisible(tokenHeight: CGFloat) {
+        if insertPoint.y > scrollView.bounds.height {
+            let newOffset = CGPoint(x: scrollView.contentOffset.x, y: insertPoint.y - scrollView.bounds.height + Constants.spacing + tokenHeight)
+            scrollView.setContentOffset(newOffset, animated: true)
+        }
     }
     
     // MARK: Popup methods
