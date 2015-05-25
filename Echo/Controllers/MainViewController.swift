@@ -22,6 +22,8 @@ public class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     private func setup() {
+        translationContainer.scrollView.contentSize = translationContainer.bounds.size
+        
         let dismissGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissGestureRecognizer:")
         dismissGestureRecognizer.numberOfTapsRequired = 1
         view.addGestureRecognizer(dismissGestureRecognizer)
@@ -42,6 +44,7 @@ public class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     public func theme() {
         view.backgroundColor = ThemeManager.sharedInstance.backgroundColor()
+        translationContainer.scrollView.backgroundColor = ThemeManager.sharedInstance.containerColor()
         setNeedsStatusBarAppearanceUpdate()
     }
     

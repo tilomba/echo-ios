@@ -49,8 +49,6 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     
     // MARK: theme
     public func theme() {
-        backgroundColor = ThemeManager.sharedInstance.containerColor()
-        
         textField.resignFirstResponder()
         textField.keyboardAppearance = ThemeManager.sharedInstance.keyboardStyle()
         textField.becomeFirstResponder()
@@ -99,7 +97,7 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         moveInsertPointAfterTokenView(tokenViewToRemove)
         
         UIView.animateWithDuration(0.15, animations: {
-            tokenViewToRemove.center = CGPoint(x: self.bounds.midX, y: self.bounds.maxY + 75.0)
+            tokenViewToRemove.center = self.convertPoint(CGPoint(x: self.scrollView.bounds.midX, y: self.scrollView.bounds.midY), fromView: self.scrollView)
         }) { (completed) -> Void in
             tokenViewToRemove.removeFromSuperview()
         }
@@ -159,10 +157,20 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     }
     
     private func moveInsertPointAfterTokenView(tokenView: TokenView) {
+        let oldInsertPoint = insertPoint
+        
         insertPoint.y = tokenView.center.y - tokenView.bounds.midY
         insertPoint.x = tokenView.center.x - tokenView.bounds.midX
         if insertPoint.x >= bounds.maxX {
             moveDownALine(tokenView.bounds.size.height)
+        }
+
+        let lineHeight = tokenView.bounds.size.height + Constants.spacing
+        let yDelta = oldInsertPoint.y - insertPoint.y
+
+        scrollView.contentSize.height -= yDelta
+        if scrollView.contentSize.height < scrollView.bounds.size.height {
+           scrollView.contentSize.height = scrollView.bounds.size.height
         }
     }
     
@@ -180,7 +188,8 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         insertPoint.y += lineHeight
         
         if insertPoint.y >= bounds.maxY {
-            scrollView.contentOffset = CGPoint(x: 0.0, y: scrollView.contentOffset.y + lineHeight)
+            scrollView.contentSize.height += lineHeight
+            scrollView.contentOffset.y += lineHeight
         }
     }
     
