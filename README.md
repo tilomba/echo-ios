@@ -1,5 +1,5 @@
 #Echo
-An iOS application that translates english alphabetical characters to their NATO counterparts.
+An iOS application that translates English alphabetical characters to their NATO counterparts.
 
 ###Creative Labs
 This product is included in our *Creative Labs* division of [Cosmic Labs](http://cosmiclabs.io). These products are solely built to learn how to work with new technologies in small bite-sized utilities that are both useful and simple.
