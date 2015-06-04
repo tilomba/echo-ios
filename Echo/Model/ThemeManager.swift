@@ -48,7 +48,9 @@ public class ThemeManager {
     
     // MARK: Switch Function(s)
     func sendThemeChangedNotification() {
-        NSNotificationCenter.defaultCenter().postNotificationName("theme", object: self)
+        NSNotificationCenter
+            .defaultCenter()
+            .postNotificationName("theme", object: self)
     }
     
     func lightTheme() {

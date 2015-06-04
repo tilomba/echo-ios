@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class Branding : NSObject {
+public class Branding: NSObject {
     private struct Cache {
         static var imageOfBranding: UIImage?
         static var canvasTargets: [AnyObject]?
@@ -201,13 +201,9 @@ public class Branding : NSObject {
     }
 
     public class var imageOfBranding: UIImage {
-//        if Cache.imageOfBranding != nil {
-//            return Cache.imageOfBranding!
-//        }
-
+        
         UIGraphicsBeginImageContextWithOptions(CGSizeMake(89, 89), false, 0)
         Branding.drawCanvas1()
-
         Cache.imageOfBranding = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 

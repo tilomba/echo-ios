@@ -8,17 +8,16 @@
 
 import UIKit
 
-@IBDesignable
-public class PopupView: UIView {
+@IBDesignable public class PopupView: UIView {
+    
+    private struct Constants {
+        static let radius: CGFloat = 6.0
+        static let fontSize: CGFloat = 17.0
+    }
     
     private var pasteButton: EmbeddedButton!
     private var clearButton: EmbeddedButton!
     private var copyButton: EmbeddedButton!
-    
-    private struct Constants {
-        static let radius = CGFloat(6)
-        static let fontSize = CGFloat(17.0)
-    }
     
     override public func prepareForInterfaceBuilder() {
         setup()
@@ -68,14 +67,20 @@ public class PopupView: UIView {
     }
     
     public func pastePressed(sender: AnyObject) {
-        NSNotificationCenter.defaultCenter().postNotificationName("paste", object: self)
+        NSNotificationCenter
+            .defaultCenter()
+            .postNotificationName("paste", object: self)
     }
     
     public func clearPressed(sender: AnyObject) {
-        NSNotificationCenter.defaultCenter().postNotificationName("clear", object: self)
+        NSNotificationCenter
+            .defaultCenter()
+            .postNotificationName("clear", object: self)
     }
     
     public func copyPressed(sender: AnyObject) {
-        NSNotificationCenter.defaultCenter().postNotificationName("copy", object: self)
+        NSNotificationCenter
+            .defaultCenter()
+            .postNotificationName("copy", object: self)
     }
 }

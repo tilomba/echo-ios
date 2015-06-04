@@ -12,7 +12,6 @@ public class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var translationContainer: TranslationContainer!
     @IBOutlet weak var button: UIButton!
-
     let transition = PopAnimator()
     
     override public func viewDidLoad() {
@@ -38,7 +37,10 @@ public class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         swipeDownGestureRecognizer.numberOfTouchesRequired = 2
         view.addGestureRecognizer(swipeDownGestureRecognizer)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "theme", name: "theme", object: nil)
+        NSNotificationCenter
+            .defaultCenter()
+            .addObserver(self, selector: "theme", name: "theme", object: nil)
+        
         theme()
     }
     
@@ -49,7 +51,9 @@ public class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "theme", object: nil)
+        NSNotificationCenter
+            .defaultCenter()
+            .removeObserver(self, name: "theme", object: nil)
     }
     
     public func swipeUpGestureRecognizer(sender: UISwipeGestureRecognizer) {

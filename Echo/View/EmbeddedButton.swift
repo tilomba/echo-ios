@@ -8,17 +8,16 @@
 
 import UIKit
 
-@IBDesignable
-public class EmbeddedButton: UIButton {
+@IBDesignable public class EmbeddedButton: UIButton {
+    
+    private struct Constants {
+        static let radius: CGFloat = 6.0
+        static let fontSize: CGFloat = 14.5
+    }
     
     private var pasteButton: UIButton!
     private var clearButton: UIButton!
     private var copyButton: UIButton!
-    
-    private struct Constants {
-        static let radius = CGFloat(6)
-        static let fontSize = CGFloat(14.5)
-    }
     
     override public func prepareForInterfaceBuilder() {
         setup()

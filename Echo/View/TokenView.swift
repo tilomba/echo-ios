@@ -8,11 +8,11 @@
 
 import UIKit
 
-@IBDesignable
-public class TokenView: UILabel {
+@IBDesignable public class TokenView: UILabel {
+    
     public struct Constants {
-        static let xMargin = CGFloat(8.0)
-        static let yMargin = CGFloat(6.0)
+        static let xMargin: CGFloat = 8.0
+        static let yMargin: CGFloat = 6.0
     }
     
     override public var text: String? {
@@ -38,7 +38,9 @@ public class TokenView: UILabel {
         super.init(frame: frame)
         setup()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "theme", name: "theme", object: nil)
+        NSNotificationCenter
+            .defaultCenter()
+            .addObserver(self, selector: "theme", name: "theme", object: nil)
     }
  
     required public init(coder aDecoder: NSCoder) {
@@ -46,7 +48,9 @@ public class TokenView: UILabel {
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "theme", object: nil)
+        NSNotificationCenter
+            .defaultCenter()
+            .removeObserver(self, name: "theme", object: nil)
     }
 
     private func setup() {

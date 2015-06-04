@@ -10,37 +10,60 @@ import UIKit
 
 public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     
-    private var insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin, y: Constants.yStartPosition + TokenView.Constants.yMargin)
+    private struct Constants {
+        static let spacing: CGFloat = 10.0
+        static let xStartPosition: CGFloat = 10.0
+        static let yStartPosition: CGFloat = 13.0
+        static let popupRect = CGRect(x: 0.0, y: 0.0, width: 299.0, height: 93.0)
+    }
+    
+    private var insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin,
+                                      y: Constants.yStartPosition + TokenView.Constants.yMargin)
+    
     private var popupView: PopupView?
     private var editingActive = true
     public var popupVisible = false
     @IBOutlet weak var textField: DummyTextField!
     @IBOutlet weak var scrollView: UIScrollView!
-    
-    private struct Constants {
-        static let spacing = CGFloat(10.0)
-        static let xStartPosition = CGFloat(10.0)
-        static let yStartPosition = CGFloat(13.0)
-        static let popupRect = CGRect(x: 0.0, y: 0.0, width: 299.0, height: 93.0)
-    }
-    
     private var tokenViews = [TokenView]()
     
-    // MARK: init/deinit
+    // MARK: Object life cycle
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "theme", name: "theme", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "pasteTokens:", name: "paste", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "clearTokensFromView:", name: "clear", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "copyTokens:", name: "copy", object: nil)
+        NSNotificationCenter
+            .defaultCenter()
+            .addObserver(self, selector: "theme", name: "theme", object: nil)
+        
+        NSNotificationCenter
+            .defaultCenter()
+            .addObserver(self, selector: "pasteTokens:", name: "paste", object: nil)
+        
+        NSNotificationCenter
+            .defaultCenter()
+            .addObserver(self, selector: "clearTokensFromView:", name: "clear", object: nil)
+        
+        NSNotificationCenter
+            .defaultCenter()
+            .addObserver(self, selector: "copyTokens:", name: "copy", object: nil)
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "theme", object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "paste", object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "clear", object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "copy", object: nil)
+        NSNotificationCenter
+            .defaultCenter()
+            .removeObserver(self, name: "theme", object: nil)
+        
+        NSNotificationCenter
+            .defaultCenter()
+            .removeObserver(self, name: "paste", object: nil)
+        
+        NSNotificationCenter
+            .defaultCenter()
+            .removeObserver(self, name: "clear", object: nil)
+        
+        NSNotificationCenter
+            .defaultCenter()
+            .removeObserver(self, name: "copy", object: nil)
     }
     
     public override func awakeFromNib() {
