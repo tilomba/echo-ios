@@ -10,19 +10,12 @@ import UIKit
 
 @IBDesignable public class EmbeddedButton: UIButton {
     
-    private struct Constants {
-        static let radius: CGFloat = 6.0
-        static let fontSize: CGFloat = 14.5
-    }
-    
+    // MARK: - Private Variables
     private var pasteButton: UIButton!
     private var clearButton: UIButton!
     private var copyButton: UIButton!
     
-    override public func prepareForInterfaceBuilder() {
-        setup()
-    }
-    
+    // MARK: - Object life cycle
     public init(title: String) {
         super.init(frame: CGRectZero)
 
@@ -44,8 +37,13 @@ import UIKit
         super.init(coder: aDecoder)
     }
     
+    override public func prepareForInterfaceBuilder() {
+        setup()
+    }
+    
+    // MARK: - Setting up generics and theme(s)
     private func setup() {
-        titleLabel!.font = UIFont.avenirRoman(Constants.fontSize)
+        titleLabel!.font = UIFont.avenirRoman(Common.defaultFontSize)
         theme()
     }
     

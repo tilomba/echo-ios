@@ -8,6 +8,7 @@
 import UIKit
 
 public class Branding: NSObject {
+    
     private struct Cache {
         static var imageOfBranding: UIImage?
         static var canvasTargets: [AnyObject]?

@@ -8,17 +8,26 @@
 
 import UIKit
 
-public class MainViewController: UIViewController, UIGestureRecognizerDelegate {
+public class MainViewController: UIViewController {
     
+    // MARK: - Private Variables
     @IBOutlet weak var translationContainer: TranslationContainer!
     @IBOutlet weak var button: UIButton!
     
+    // MARK: - Object life cycle
     override public func viewDidLoad() {
         super.viewDidLoad()
 
         setup()
     }
     
+    deinit {
+        NSNotificationCenter
+            .defaultCenter()
+            .removeObserver(self, name: "theme", object: nil)
+    }
+    
+    // MARK: - Setting up generics and theme(s)
     private func setup() {
         translationContainer.scrollView.contentSize = translationContainer.bounds.size
         
@@ -49,12 +58,13 @@ public class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         setNeedsStatusBarAppearanceUpdate()
     }
     
-    deinit {
-        NSNotificationCenter
-            .defaultCenter()
-            .removeObserver(self, name: "theme", object: nil)
+    override public func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return ThemeManager.sharedInstance.statusBarStyle()
     }
-    
+}
+
+// MARK: - UIGestureRecognizerDelegate
+extension MainViewController: UIGestureRecognizerDelegate {
     public func swipeUpGestureRecognizer(sender: UISwipeGestureRecognizer) {
         ThemeManager.sharedInstance.lightTheme()
     }
@@ -67,9 +77,5 @@ public class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         if translationContainer.popupVisible {
             translationContainer.dismiss()
         }
-    }
-    
-    override public func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return ThemeManager.sharedInstance.statusBarStyle()
     }
 }

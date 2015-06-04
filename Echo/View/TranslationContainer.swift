@@ -17,17 +17,17 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         static let popupRect = CGRect(x: 0.0, y: 0.0, width: 299.0, height: 93.0)
     }
     
+    @IBOutlet public weak var textField: DummyTextField!
+    @IBOutlet public weak var scrollView: UIScrollView!
+    public var popupVisible = false
+    
+    private var actionView: ActionView?
+    private var editingActive = true
+    private var tokenViews = [TokenView]()
     private var insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin,
                                       y: Constants.yStartPosition + TokenView.Constants.yMargin)
     
-    private var ActionView: ActionView?
-    private var editingActive = true
-    public var popupVisible = false
-    @IBOutlet weak var textField: DummyTextField!
-    @IBOutlet weak var scrollView: UIScrollView!
-    private var tokenViews = [TokenView]()
-    
-    // MARK: Object life cycle
+    // MARK: - Object life cycle
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -70,35 +70,35 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         theme()
     }
     
-    // MARK: theme
+    // MARK: - Theme
     public func theme() {
         textField.resignFirstResponder()
         textField.keyboardAppearance = ThemeManager.sharedInstance.keyboardStyle()
         textField.becomeFirstResponder()
         
-        if let ActionView = ActionView {
-            ActionView.removeFromSuperview()
+        if let actionView = actionView {
+            actionView.removeFromSuperview()
         }
         
-        ActionView = ActionView(frame: Constants.popupRect)
+        actionView = ActionView(frame: Constants.popupRect)
         
         if popupVisible {
-            addSubview(ActionView!)
-            ActionView!.center = CGPoint(x: bounds.midX, y: bounds.midY)
-            ActionView!.layer.zPosition = 100
+            addSubview(actionView!)
+            actionView!.center = CGPoint(x: bounds.midX, y: bounds.midY)
+            actionView!.layer.zPosition = 100
         }
     }
 
-    func doInsertText(text: String) {
+    // MARK: - Core Text Methods
+    public func doInsertText(text: String) {
         insertText(text)
     }
     
-    func doDeleteBackwards() {
+    public func doDeleteBackwards() {
         deleteBackward()
     }
-        
-    // UIKeyInput
-    public func insertText(text: String) {
+    
+    private func insertText(text: String) {
         if !editingActive {
             return
         }
@@ -107,7 +107,7 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         draw(newTokens)
     }
 
-    public func deleteBackward() {
+    private func deleteBackward() {
         if !editingActive {
             return
         }
@@ -126,7 +126,7 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         }
     }
     
-    // MARK: Editing methods
+    // MARK: - Editing methods
     private func draw(newTokens: TokenList, fromPaste: Bool = false) {
         for token in newTokens {
             let tokenView = TokenView(frame: CGRectZero)
@@ -155,7 +155,7 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         if fromPaste {
             for tokenView in tokenViews {
                 let position = tokenView.center
-                tokenView.center = ActionView!.center
+                tokenView.center = actionView!.center
                 
                 UIView.animateWithDuration(0.15, animations: {
                     tokenView.center = position
@@ -174,7 +174,6 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         }
         
         tokenViews.removeAll()
-        
         resetInsertPoint()
     }
     
@@ -200,9 +199,11 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     
     private func moveInsertPoint(tokenSize: CGSize) {
         insertPoint.x += tokenSize.width + Constants.spacing
+        
         if insertPoint.x >= bounds.maxX {
             moveDownALine(tokenSize.height)
         }
+        
         ensureInsertPointIsVisible(tokenSize.height)
     }
     
@@ -234,28 +235,28 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         }
     }
     
-    // MARK: Popup methods
+    // MARK: - Popup methods
     @IBAction func longPressGestureRecognizer(sender: AnyObject) {
         if popupVisible {
             return
         }
         
         if sender.state == UIGestureRecognizerState.Began {
-            if nil == ActionView {
-                ActionView = ActionView(frame: Constants.popupRect)
+            if nil == actionView {
+                actionView = ActionView(frame: Constants.popupRect)
             }
             
-            addSubview(ActionView!)
-            ActionView!.center = CGPoint(x: bounds.midX, y: bounds.midY)
-            ActionView!.layer.zPosition = 100
+            addSubview(actionView!)
+            actionView!.center = CGPoint(x: bounds.midX, y: bounds.midY)
+            actionView!.layer.zPosition = 100
             
             editingActive = false
             popupVisible = true
             
-            let finalRect = ActionView!.bounds
-            ActionView!.bounds = CGRectZero
+            let finalRect = actionView!.bounds
+            actionView!.bounds = CGRectZero
             UIView.animateWithDuration(0.15) {
-                self.ActionView!.bounds = finalRect
+                self.actionView!.bounds = finalRect
             }
         }
     }
@@ -263,17 +264,17 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     public func dismiss() {
         if popupVisible {
             UIView.animateWithDuration(0.15, animations: {
-                self.ActionView!.bounds = CGRectZero
+                self.actionView!.bounds = CGRectZero
             }, completion: { (completed) -> Void in
-                self.ActionView!.removeFromSuperview()
-                self.ActionView!.bounds = Constants.popupRect
+                self.actionView!.removeFromSuperview()
+                self.actionView!.bounds = Constants.popupRect
                 self.popupVisible = false
                 self.editingActive = true
             })
         }
     }
     
-    // MARK: Notification methods
+    // MARK: - Notification methods
     public func pasteTokens(sender: AnyObject) {
         if let pasteboardString = UIPasteboard.generalPasteboard().string {
             clearTokens()

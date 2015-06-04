@@ -9,22 +9,16 @@
 import UIKit
 
 @IBDesignable public class ActionView: UIView {
-    
-    private struct Constants {
-        static let radius: CGFloat = 6.0
-        static let fontSize: CGFloat = 17.0
-    }
-    
+        
+    // MARK: - Private Variables
     private var pasteButton: EmbeddedButton!
     private var clearButton: EmbeddedButton!
     private var copyButton: EmbeddedButton!
     
-    override public func prepareForInterfaceBuilder() {
-        setup()
-    }
-    
+    // MARK: - Object life cycle
     override public init(frame: CGRect) {
         super.init(frame: frame)
+        
         setup()
     }
     
@@ -32,8 +26,13 @@ import UIKit
         super.init(coder: aDecoder)
     }
     
+    override public func prepareForInterfaceBuilder() {
+        setup()
+    }
+    
+    // MARK: - Setting up generics
     private func setup() {
-        layer.cornerRadius = Constants.radius
+        layer.cornerRadius = Common.radius
         layer.masksToBounds = true
         
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: ThemeManager.sharedInstance.blurStyle()))
@@ -66,6 +65,7 @@ import UIKit
         blurView.contentView.addSubview(copyButton)
     }
     
+    // MARK: - Paste, copy and clear methods
     public func pastePressed(sender: AnyObject) {
         NSNotificationCenter
             .defaultCenter()

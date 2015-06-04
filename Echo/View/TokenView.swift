@@ -34,6 +34,7 @@ import UIKit
         setup()
     }
     
+    // MARK: - Object life cycle
     override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -53,6 +54,7 @@ import UIKit
             .removeObserver(self, name: "theme", object: nil)
     }
 
+    // MARK: - Setting up generics and theme(s)
     private func setup() {
         font = UIFont.avenirRoman(15)
         textAlignment = .Center
