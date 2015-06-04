@@ -8,19 +8,19 @@
 
 import UIKit
 
-public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
+public class TranslationContainer: UIView {
     
     private struct Constants {
-        static let spacing: CGFloat = 10.0
         static let xStartPosition: CGFloat = 10.0
         static let yStartPosition: CGFloat = 13.0
-        static let popupRect = CGRect(x: 0.0, y: 0.0, width: 299.0, height: 93.0)
     }
     
+    // MARK: - Public Variables
     @IBOutlet public weak var textField: DummyTextField!
     @IBOutlet public weak var scrollView: UIScrollView!
     public var popupVisible = false
     
+    // MARK: - Private Variables
     private var actionView: ActionView?
     private var editingActive = true
     private var tokenViews = [TokenView]()
@@ -80,7 +80,7 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
             actionView.removeFromSuperview()
         }
         
-        actionView = ActionView(frame: Constants.popupRect)
+        actionView = ActionView(frame: Common.actionPopupRect)
         
         if popupVisible {
             addSubview(actionView!)
@@ -134,7 +134,6 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
             
             // check if the insertion point needs to be moved down a line because it's too wide to fit on the current line
             adjustInsertPointForTokenView(tokenView)
-            
             tokenViews.append(tokenView)
             addSubview(tokenView)
             
@@ -186,7 +185,7 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
             moveDownALine(tokenView.bounds.size.height)
         }
 
-        let lineHeight = tokenView.bounds.size.height + Constants.spacing
+        let lineHeight = tokenView.bounds.size.height + Common.spacing
         let yDelta = oldInsertPoint.y - insertPoint.y
 
         scrollView.contentSize.height -= yDelta
@@ -198,7 +197,7 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     }
     
     private func moveInsertPoint(tokenSize: CGSize) {
-        insertPoint.x += tokenSize.width + Constants.spacing
+        insertPoint.x += tokenSize.width + Common.spacing
         
         if insertPoint.x >= bounds.maxX {
             moveDownALine(tokenSize.height)
@@ -208,7 +207,7 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     }
     
     private func moveDownALine(height: CGFloat) {
-        let lineHeight = height + Constants.spacing
+        let lineHeight = height + Common.spacing
         
         insertPoint.x = Constants.xStartPosition + TokenView.Constants.xMargin
         insertPoint.y += lineHeight
@@ -230,7 +229,7 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     
     private func ensureInsertPointIsVisible(tokenHeight: CGFloat) {
         if insertPoint.y > scrollView.bounds.height {
-            let newOffset = CGPoint(x: scrollView.contentOffset.x, y: insertPoint.y - scrollView.bounds.height + Constants.spacing + tokenHeight)
+            let newOffset = CGPoint(x: scrollView.contentOffset.x, y: insertPoint.y - scrollView.bounds.height + Common.spacing + tokenHeight)
             scrollView.setContentOffset(newOffset, animated: true)
         }
     }
@@ -243,12 +242,12 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         
         if sender.state == UIGestureRecognizerState.Began {
             if nil == actionView {
-                actionView = ActionView(frame: Constants.popupRect)
+                actionView = ActionView(frame: Common.actionPopupRect)
             }
             
             addSubview(actionView!)
             actionView!.center = CGPoint(x: bounds.midX, y: bounds.midY)
-            actionView!.layer.zPosition = 100
+            actionView!.layer.zPosition = 100.0
             
             editingActive = false
             popupVisible = true
@@ -267,7 +266,7 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
                 self.actionView!.bounds = CGRectZero
             }, completion: { (completed) -> Void in
                 self.actionView!.removeFromSuperview()
-                self.actionView!.bounds = Constants.popupRect
+                self.actionView!.bounds = Common.actionPopupRect
                 self.popupVisible = false
                 self.editingActive = true
             })

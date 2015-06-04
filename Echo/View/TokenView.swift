@@ -30,10 +30,6 @@ import UIKit
         }
     }
     
-    override public func prepareForInterfaceBuilder() {
-        setup()
-    }
-    
     // MARK: - Object life cycle
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,6 +48,10 @@ import UIKit
         NSNotificationCenter
             .defaultCenter()
             .removeObserver(self, name: "theme", object: nil)
+    }
+    
+    override public func prepareForInterfaceBuilder() {
+        setup()
     }
 
     // MARK: - Setting up generics and theme(s)

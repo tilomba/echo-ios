@@ -9,7 +9,6 @@
 import Foundation
 
 public class NATODictionary {
-
     private static let dictionary = [
         "A": "Alpha",
         "B": "Bravo",
@@ -49,7 +48,7 @@ public class NATODictionary {
         "9": "Nine"
     ]
     
-    static func translateString(string: String) -> TokenList {
+    static internal func translateString(string: String) -> TokenList {
         var tokens = TokenList()
         
         for character in string.uppercaseString {

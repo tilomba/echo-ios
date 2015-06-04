@@ -25,4 +25,3 @@ extension UIFont {
         return UIFont(name: "HelveticaNeue-UltraLight", size: size)!
     }
 }
-

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Cosmic Labs. All rights reserved.
 //
 
-enum Token: String {
+public enum Token: String {
     case Alpha = "Alpha"
     case Bravo = "Bravo"
     case Charlie = "Charlie"
