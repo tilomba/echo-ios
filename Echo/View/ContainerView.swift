@@ -1,5 +1,5 @@
 //
-//  Container.swift
+//  ContainerView.swift
 //  Echo
 //
 //  Created by Douglas Bumby on 2015-04-19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class Container: UIView {
+public class ContainerView: UIView {
     
     private struct Constants {
         static let xStartPosition: CGFloat = 10.0

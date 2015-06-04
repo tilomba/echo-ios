@@ -11,7 +11,7 @@ import UIKit
 public class MainViewController: UIViewController {
     
     // MARK: - Private Variables
-    @IBOutlet weak var container: Container!
+    @IBOutlet weak var containerView: ContainerView!
     @IBOutlet weak var button: UIButton!
     
     // MARK: - Object life cycle
@@ -29,12 +29,12 @@ public class MainViewController: UIViewController {
     
     // MARK: - Setting up generics and theme(s)
     private func setup() {
-        container.scrollView.contentSize = container.bounds.size
+        containerView.scrollView.contentSize = containerView.bounds.size
         
         let dismissGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissGestureRecognizer:")
         dismissGestureRecognizer.numberOfTapsRequired = 1
         view.addGestureRecognizer(dismissGestureRecognizer)
-        
+                
         let swipeUpGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipeUpGestureRecognizer:"))
         swipeUpGestureRecognizer.direction = .Up
         swipeUpGestureRecognizer.numberOfTouchesRequired = 2
@@ -54,7 +54,7 @@ public class MainViewController: UIViewController {
     
     public func theme() {
         view.backgroundColor = ThemeManager.sharedInstance.backgroundColor()
-        container.scrollView.backgroundColor = ThemeManager.sharedInstance.containerColor()
+        containerView.scrollView.backgroundColor = ThemeManager.sharedInstance.containerColor()
         setNeedsStatusBarAppearanceUpdate()
     }
     
@@ -74,8 +74,8 @@ extension MainViewController: UIGestureRecognizerDelegate {
     }
     
     public func dismissGestureRecognizer(sender: AnyObject) {
-        if container.popupVisible {
-            container.dismiss()
+        if containerView.popupVisible {
+            containerView.dismiss()
         }
     }
 }

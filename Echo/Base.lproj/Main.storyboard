@@ -28,7 +28,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mUR-Zn-OjD">
                                 <rect key="frame" x="16" y="95" width="343" height="343"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gfh-Ba-kUb" customClass="Container" customModule="Echo" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gfh-Ba-kUb" customClass="ContainerView" customModule="Echo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="343"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qNe-ja-VvF" customClass="DummyTextField" customModule="Echo" customModuleProvider="target">
@@ -36,7 +36,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
-                                                    <outlet property="Container" destination="gfh-Ba-kUb" id="wyI-53-48n"/>
+                                                    <outlet property="ContainerView" destination="gfh-Ba-kUb" id="wyI-53-48n"/>
                                                     <outlet property="delegate" destination="gfh-Ba-kUb" id="ssC-VQ-lkt"/>
                                                 </connections>
                                             </textField>
@@ -69,7 +69,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="Container" destination="gfh-Ba-kUb" id="CTb-8j-dBH"/>
+                        <outlet property="ContainerView" destination="gfh-Ba-kUb" id="CTb-8j-dBH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

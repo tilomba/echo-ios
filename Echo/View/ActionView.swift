@@ -34,10 +34,8 @@ import UIKit
     private func setup() {
         layer.cornerRadius = Common.radius
         layer.masksToBounds = true
-        
-        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: ThemeManager.sharedInstance.blurStyle()))
-        blurView.bounds = bounds
-        blurView.center = center
+
+        let blurView = BlurView.setup(ThemeManager.sharedInstance.blurStyle(), bounds: bounds, center: center)
         addSubview(blurView)
         
         let width = bounds.size.width / 3.0

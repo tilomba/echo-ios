@@ -35,11 +35,11 @@ import UIKit
     override public init(frame: CGRect) {
         super.init(frame: frame)
         
-        setup()
-        
         NSNotificationCenter
             .defaultCenter()
             .addObserver(self, selector: "theme", name: "theme", object: nil)
+        
+        setup()
     }
  
     required public init(coder aDecoder: NSCoder) {

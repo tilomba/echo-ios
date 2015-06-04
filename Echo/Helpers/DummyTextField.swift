@@ -10,17 +10,17 @@ import UIKit
 
 public class DummyTextField: UITextField {
     
-    @IBOutlet public weak var container: Container!
+    @IBOutlet public weak var containerView: ContainerView!
     
     override public func insertText(text: String) {
         super.insertText(text)
         
-        container.doInsertText(text)
+        containerView.doInsertText(text)
     }
     
     override public func deleteBackward() {
         super.deleteBackward()
         
-        container.doDeleteBackwards()
+        containerView.doDeleteBackwards()
     }
 }

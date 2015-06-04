@@ -9,7 +9,6 @@
 import UIKit
 
 public struct Common {
-    
     static let radius: CGFloat = 6.0
     static let defaultFontSize: CGFloat = 14.5
     static let spacing: CGFloat = 10.0
