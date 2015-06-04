@@ -20,7 +20,7 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     private var insertPoint = CGPoint(x: Constants.xStartPosition + TokenView.Constants.xMargin,
                                       y: Constants.yStartPosition + TokenView.Constants.yMargin)
     
-    private var popupView: PopupView?
+    private var ActionView: ActionView?
     private var editingActive = true
     public var popupVisible = false
     @IBOutlet weak var textField: DummyTextField!
@@ -76,16 +76,16 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         textField.keyboardAppearance = ThemeManager.sharedInstance.keyboardStyle()
         textField.becomeFirstResponder()
         
-        if let popupView = popupView {
-            popupView.removeFromSuperview()
+        if let ActionView = ActionView {
+            ActionView.removeFromSuperview()
         }
         
-        popupView = PopupView(frame: Constants.popupRect)
+        ActionView = ActionView(frame: Constants.popupRect)
         
         if popupVisible {
-            addSubview(popupView!)
-            popupView!.center = CGPoint(x: bounds.midX, y: bounds.midY)
-            popupView!.layer.zPosition = 100
+            addSubview(ActionView!)
+            ActionView!.center = CGPoint(x: bounds.midX, y: bounds.midY)
+            ActionView!.layer.zPosition = 100
         }
     }
 
@@ -155,7 +155,7 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         if fromPaste {
             for tokenView in tokenViews {
                 let position = tokenView.center
-                tokenView.center = popupView!.center
+                tokenView.center = ActionView!.center
                 
                 UIView.animateWithDuration(0.15, animations: {
                     tokenView.center = position
@@ -241,21 +241,21 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
         }
         
         if sender.state == UIGestureRecognizerState.Began {
-            if nil == popupView {
-                popupView = PopupView(frame: Constants.popupRect)
+            if nil == ActionView {
+                ActionView = ActionView(frame: Constants.popupRect)
             }
             
-            addSubview(popupView!)
-            popupView!.center = CGPoint(x: bounds.midX, y: bounds.midY)
-            popupView!.layer.zPosition = 100
+            addSubview(ActionView!)
+            ActionView!.center = CGPoint(x: bounds.midX, y: bounds.midY)
+            ActionView!.layer.zPosition = 100
             
             editingActive = false
             popupVisible = true
             
-            let finalRect = popupView!.bounds
-            popupView!.bounds = CGRectZero
+            let finalRect = ActionView!.bounds
+            ActionView!.bounds = CGRectZero
             UIView.animateWithDuration(0.15) {
-                self.popupView!.bounds = finalRect
+                self.ActionView!.bounds = finalRect
             }
         }
     }
@@ -263,10 +263,10 @@ public class TranslationContainer: UIView, UIGestureRecognizerDelegate {
     public func dismiss() {
         if popupVisible {
             UIView.animateWithDuration(0.15, animations: {
-                self.popupView!.bounds = CGRectZero
+                self.ActionView!.bounds = CGRectZero
             }, completion: { (completed) -> Void in
-                self.popupView!.removeFromSuperview()
-                self.popupView!.bounds = Constants.popupRect
+                self.ActionView!.removeFromSuperview()
+                self.ActionView!.bounds = Constants.popupRect
                 self.popupVisible = false
                 self.editingActive = true
             })

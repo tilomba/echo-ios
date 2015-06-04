@@ -1,6 +1,5 @@
 //
 //  CustomColorPalette.swift
-//  Echo
 //
 //  Created by Douglas Bumby on 2015-04-19.
 //  Copyright (c) 2015 Cosmic Labs. All rights reserved.

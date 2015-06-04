@@ -12,7 +12,6 @@ public class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var translationContainer: TranslationContainer!
     @IBOutlet weak var button: UIButton!
-    let transition = PopAnimator()
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -72,18 +71,5 @@ public class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override public func preferredStatusBarStyle() -> UIStatusBarStyle {
         return ThemeManager.sharedInstance.statusBarStyle()
-    }
-}
-
-extension MainViewController: UIViewControllerTransitioningDelegate {
-    @IBAction func showOptionsViewController(sender: UIButton) {
-        let optionsViewController = storyboard!.instantiateViewControllerWithIdentifier("optionsViewController") as! OptionsViewController
-        optionsViewController.transitioningDelegate = self
-        presentViewController(optionsViewController, animated: true, completion: nil)
-    }
-    
-    public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        return transition
     }
 }

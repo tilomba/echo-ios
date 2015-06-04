@@ -29,11 +29,15 @@ import UIKit
         setTitle(title, forState: .Normal)
         setup()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "theme", name: "theme", object: nil)
+        NSNotificationCenter
+            .defaultCenter()
+            .addObserver(self, selector: "theme", name: "theme", object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "theme", object: nil)
+        NSNotificationCenter
+            .defaultCenter()
+            .removeObserver(self, name: "theme", object: nil)
     }
     
     required public init(coder aDecoder: NSCoder) {

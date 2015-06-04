@@ -1,5 +1,5 @@
 //
-//  PopupView.swift
+//  ActionView.swift
 //  Echo
 //
 //  Created by Douglas Bumby on 2015-04-20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable public class PopupView: UIView {
+@IBDesignable public class ActionView: UIView {
     
     private struct Constants {
         static let radius: CGFloat = 6.0

@@ -1,6 +1,6 @@
 //
-//  Branding.swift
-//  Echo
+//  StyleKit.swift
+//  Generated using PaintCode.
 //
 //  Created by Douglas Bumby on 2015-04-19.
 //  Copyright (c) 2015 Cosmic Labs. All rights reserved.

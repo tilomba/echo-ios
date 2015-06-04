@@ -8,17 +8,17 @@
 
 import UIKit
 
-class DummyTextField: UITextField {
+public class DummyTextField: UITextField {
     
-    @IBOutlet weak var translationContainer: TranslationContainer!
+    @IBOutlet public weak var translationContainer: TranslationContainer!
     
-    override func insertText(text: String) {
+    override public func insertText(text: String) {
         super.insertText(text)
         
         translationContainer.doInsertText(text)
     }
     
-    override func deleteBackward() {
+    override public func deleteBackward() {
         super.deleteBackward()
         
         translationContainer.doDeleteBackwards()
