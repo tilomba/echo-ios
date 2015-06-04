@@ -1,5 +1,5 @@
 //
-//  TranslationContainer.swift
+//  Container.swift
 //  Echo
 //
 //  Created by Douglas Bumby on 2015-04-19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class TranslationContainer: UIView {
+public class Container: UIView {
     
     private struct Constants {
         static let xStartPosition: CGFloat = 10.0

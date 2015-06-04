@@ -1,5 +1,5 @@
 //
-//  EmbeddedButton.swift
+//  ActionButton.swift
 //  Echo
 //
 //  Created by Damon Jones on 4/20/15.
@@ -8,23 +8,18 @@
 
 import UIKit
 
-@IBDesignable public class EmbeddedButton: UIButton {
-    
-    // MARK: - Private Variables
-    private var pasteButton: UIButton!
-    private var clearButton: UIButton!
-    private var copyButton: UIButton!
+@IBDesignable public class ActionButton: UIButton {
     
     // MARK: - Object life cycle
     public init(title: String) {
         super.init(frame: CGRectZero)
 
-        setTitle(title, forState: .Normal)
-        setup()
-        
         NSNotificationCenter
             .defaultCenter()
             .addObserver(self, selector: "theme", name: "theme", object: nil)
+        
+        setTitle(title, forState: .Normal)
+        setup()
     }
     
     deinit {

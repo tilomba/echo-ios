@@ -15,6 +15,7 @@ import UIKit
         static let yMargin: CGFloat = 6.0
     }
     
+    // MARK: - Public Variables
     override public var text: String? {
         didSet {
             sizeToFit()
@@ -33,6 +34,7 @@ import UIKit
     // MARK: - Object life cycle
     override public init(frame: CGRect) {
         super.init(frame: frame)
+        
         setup()
         
         NSNotificationCenter

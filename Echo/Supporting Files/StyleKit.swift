@@ -16,6 +16,7 @@ public class Branding: NSObject {
     
     override init() {
         super.init()
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "theme", name: "theme", object: nil)
     }
     

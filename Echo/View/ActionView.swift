@@ -11,9 +11,9 @@ import UIKit
 @IBDesignable public class ActionView: UIView {
         
     // MARK: - Private Variables
-    private var pasteButton: EmbeddedButton!
-    private var clearButton: EmbeddedButton!
-    private var copyButton: EmbeddedButton!
+    private var pasteButton: ActionButton!
+    private var clearButton: ActionButton!
+    private var copyButton: ActionButton!
     
     // MARK: - Object life cycle
     override public init(frame: CGRect) {
@@ -46,19 +46,19 @@ import UIKit
         let y = height / 2.0
         
         let buttonRect = CGRect(x: 0.0, y: 0.0, width: width, height: height)
-        pasteButton = EmbeddedButton(title: "Paste")
+        pasteButton = ActionButton(title: "Paste")
         pasteButton.frame = buttonRect
         pasteButton.center = CGPoint(x: width - widthOffset, y: y)
         pasteButton.addTarget(self, action: "pastePressed:", forControlEvents: .TouchDown)
         blurView.contentView.addSubview(pasteButton)
 
-        clearButton = EmbeddedButton(title: "Clear")
+        clearButton = ActionButton(title: "Clear")
         clearButton.frame = buttonRect
         clearButton.center = CGPoint(x: 2.0 * width - widthOffset, y: y)
         clearButton.addTarget(self, action: "clearPressed:", forControlEvents: .TouchDown)
         blurView.contentView.addSubview(clearButton)
         
-        copyButton = EmbeddedButton(title: "Copy")
+        copyButton = ActionButton(title: "Copy")
         copyButton.frame = buttonRect
         copyButton.center = CGPoint(x: 3.0 * width - widthOffset, y: y)
         copyButton.addTarget(self, action: "copyPressed:", forControlEvents: .TouchDown)

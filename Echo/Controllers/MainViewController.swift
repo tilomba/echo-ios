@@ -11,7 +11,7 @@ import UIKit
 public class MainViewController: UIViewController {
     
     // MARK: - Private Variables
-    @IBOutlet weak var translationContainer: TranslationContainer!
+    @IBOutlet weak var container: Container!
     @IBOutlet weak var button: UIButton!
     
     // MARK: - Object life cycle
@@ -29,7 +29,7 @@ public class MainViewController: UIViewController {
     
     // MARK: - Setting up generics and theme(s)
     private func setup() {
-        translationContainer.scrollView.contentSize = translationContainer.bounds.size
+        container.scrollView.contentSize = container.bounds.size
         
         let dismissGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissGestureRecognizer:")
         dismissGestureRecognizer.numberOfTapsRequired = 1
@@ -54,7 +54,7 @@ public class MainViewController: UIViewController {
     
     public func theme() {
         view.backgroundColor = ThemeManager.sharedInstance.backgroundColor()
-        translationContainer.scrollView.backgroundColor = ThemeManager.sharedInstance.containerColor()
+        container.scrollView.backgroundColor = ThemeManager.sharedInstance.containerColor()
         setNeedsStatusBarAppearanceUpdate()
     }
     
@@ -74,8 +74,8 @@ extension MainViewController: UIGestureRecognizerDelegate {
     }
     
     public func dismissGestureRecognizer(sender: AnyObject) {
-        if translationContainer.popupVisible {
-            translationContainer.dismiss()
+        if container.popupVisible {
+            container.dismiss()
         }
     }
 }

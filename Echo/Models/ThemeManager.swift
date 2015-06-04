@@ -12,7 +12,7 @@ public class ThemeManager {
     
     public var normal = false
     
-    class var sharedInstance: ThemeManager {
+    public class var sharedInstance: ThemeManager {
         struct Singleton {
             static let instance = ThemeManager()
         }
