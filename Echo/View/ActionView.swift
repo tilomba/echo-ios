@@ -42,25 +42,35 @@ import UIKit
         let widthOffset = width / 2.0
         let height = bounds.size.height
         let y = height / 2.0
-        
+
+      
         let buttonRect = CGRect(x: 0.0, y: 0.0, width: width, height: height)
         pasteButton = ActionButton(title: "Paste")
         pasteButton.frame = buttonRect
         pasteButton.center = CGPoint(x: width - widthOffset, y: y)
         pasteButton.addTarget(self, action: "pastePressed:", forControlEvents: .TouchDown)
         blurView.contentView.addSubview(pasteButton)
-
+        
         clearButton = ActionButton(title: "Clear")
         clearButton.frame = buttonRect
         clearButton.center = CGPoint(x: 2.0 * width - widthOffset, y: y)
         clearButton.addTarget(self, action: "clearPressed:", forControlEvents: .TouchDown)
         blurView.contentView.addSubview(clearButton)
+
+        var clearButtonLeftBorder = UIView(frame: CGRectMake(1, 0, 1, height))
+        clearButtonLeftBorder.backgroundColor = UIColor.blackColor()
+        clearButton.addSubview(clearButtonLeftBorder)
         
         copyButton = ActionButton(title: "Copy")
         copyButton.frame = buttonRect
         copyButton.center = CGPoint(x: 3.0 * width - widthOffset, y: y)
         copyButton.addTarget(self, action: "copyPressed:", forControlEvents: .TouchDown)
         blurView.contentView.addSubview(copyButton)
+        
+        var copyButtonLeftBorder = UIView(frame: CGRectMake(1, 0, 1, height))
+        copyButtonLeftBorder.backgroundColor = UIColor.blackColor()
+        clearButton.addSubview(copyButtonLeftBorder)
+        copyButton.addSubview(copyButtonLeftBorder)
     }
     
     // MARK: - Paste, copy and clear methods
