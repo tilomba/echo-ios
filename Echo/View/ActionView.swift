@@ -57,7 +57,7 @@ import UIKit
         clearButton.addTarget(self, action: "clearPressed:", forControlEvents: .TouchDown)
         blurView.contentView.addSubview(clearButton)
 
-        var clearButtonLeftBorder = UIView(frame: CGRectMake(1, 0, 1, height))
+        let clearButtonLeftBorder = UIView(frame: CGRect(x: 1.0, y: 0.0, width: 1.0, height: height))
         clearButtonLeftBorder.backgroundColor = UIColor.blackColor()
         clearButton.addSubview(clearButtonLeftBorder)
         
@@ -67,7 +67,7 @@ import UIKit
         copyButton.addTarget(self, action: "copyPressed:", forControlEvents: .TouchDown)
         blurView.contentView.addSubview(copyButton)
         
-        var copyButtonLeftBorder = UIView(frame: CGRectMake(1, 0, 1, height))
+        let copyButtonLeftBorder = UIView(frame: CGRect(x: 1.0, y: 0.0, width: 1.0, height: height))
         copyButtonLeftBorder.backgroundColor = UIColor.blackColor()
         clearButton.addSubview(copyButtonLeftBorder)
         copyButton.addSubview(copyButtonLeftBorder)
